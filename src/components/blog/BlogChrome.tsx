@@ -25,7 +25,7 @@ export function BlogFooter() {
     <footer className="border-t border-border">
       <div className="mx-auto max-w-6xl px-5 py-10 text-sm text-muted-foreground sm:px-8 lg:flex lg:items-start lg:justify-between lg:gap-12">
         <p className="max-w-3xl">
-          <strong className="text-foreground">Affiliate disclosure:</strong> I'm an independent HighLevel affiliate, not a HighLevel employee. Some links on this site are affiliate links, so I may earn a commission if you sign up, at no extra cost to you. Prices and offers were checked on the date shown on each guide and can change, so the HighLevel page is always the final word. HighLevel and its logo are trademarks of HighLevel, Inc.
+          <strong className="text-foreground">Affiliate disclaimer:</strong> I'm an independent HighLevel affiliate, not a HighLevel employee or staff member. I may earn a commission if you sign up, at no extra cost to you. HighLevel and its logo are trademarks of HighLevel, Inc. This page is not owned or operated by HighLevel. Prices and offers were checked on the date shown on each guide and can change, so the HighLevel page is always the final word.
         </p>
         <nav aria-label="Footer" className="mt-6 flex gap-5 lg:mt-0">
           <Link to="/" className="hover:text-foreground">Free bootcamp</Link>

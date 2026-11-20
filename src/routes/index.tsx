@@ -5,11 +5,12 @@ import logoUrl from "@/assets/highlevel-logo.png";
 import { CTA } from "@/components/landing/CTA";
 import { Countdown } from "@/components/landing/Countdown";
 import { StickyCTA } from "@/components/landing/StickyCTA";
+import { LeadGateProvider, useGateClick } from "@/components/landing/LeadGate";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { AFFILIATE_URL } from "@/lib/bootcamp";
 
 const TITLE = "HighLevel Free Trial (30 Days) + Free Live Bootcamp";
-const DESC = "Launch your business on HighLevel in under 60 minutes with a free live bootcamp and a 30-day free trial. No tech skills needed.";
+const DESC = "For local businesses, coaches and service providers: automate your leads, booking and follow-up on HighLevel in one free 60-minute live bootcamp, with a 30-day free trial.";
 
 const faqs: [string, string][] = [
   ["I'm not technical. Can I really do this?", "Yes. The bootcamp is click-by-click with a live HighLevel coach and breakout rooms, so you never get stuck on the tech."],
@@ -17,7 +18,7 @@ const faqs: [string, string][] = [
   ["Is the bootcamp really live?", "Yes. It's a live Zoom class every weekday at 11am CT (Central Time), not a pre-recorded webinar. You can ask questions in real time."],
   ["How long does the bootcamp take?", "60 minutes max. You leave with your HighLevel account set up and a working launch."],
   ["What do I need to join?", "Just sign up for the free trial through the button on this page. You'll get access to book your bootcamp seat right after."],
-  ["What is HighLevel?", "HighLevel is an all-in-one sales and marketing platform: CRM, funnels, websites, email and SMS, booking calendars, reviews and automation, used by 70,000+ businesses and agencies."],
+  ["What is HighLevel?", "HighLevel is an all-in-one sales and marketing platform: CRM, funnels, websites, email and SMS, booking calendars, reviews and automation, all in one place, so you can replace a stack of separate tools."],
 ];
 
 export const Route = createFileRoute("/")({
@@ -47,7 +48,7 @@ export const Route = createFileRoute("/")({
 });
 
 const Disclaimer = () => (
-  <>I'm an independent HighLevel affiliate, <strong>not a HighLevel employee or staff member</strong>. I may earn a commission if you sign up through my link, at no extra cost to you.</>
+  <>I'm an independent HighLevel affiliate, <strong>not a HighLevel employee or staff member</strong>. I may earn a commission if you sign up, at no extra cost to you.</>
 );
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
@@ -86,7 +87,7 @@ function NextBootcampCard() {
         ))}
       </dl>
       <ul className="mt-6 space-y-2.5 border-t border-border pt-5">
-        {["Live coach walks you through it", "Breakout rooms to build together", "Leave with a live business"].map((t) => (
+        {["A live coach clicks through it with you", "Missed-call text-back, booking and reviews set up", "Leave with your follow-up running on autopilot"].map((t) => (
           <li key={t} className="flex items-start gap-2.5 text-sm"><Check className="mt-0.5 h-4 w-4 shrink-0 text-success" aria-hidden />{t}</li>
         ))}
       </ul>
@@ -95,6 +96,11 @@ function NextBootcampCard() {
 }
 
 function Index() {
+  return <LeadGateProvider><LandingPage /></LeadGateProvider>;
+}
+
+function LandingPage() {
+  const headerGate = useGateClick("header");
   return (
     <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-background focus:px-4 focus:py-2">Skip to content</a>
@@ -116,7 +122,7 @@ function Index() {
         </nav>
         <div className="flex items-center gap-5">
           <Link to="/blog" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden">Guides</Link>
-          <a href={AFFILIATE_URL} target="_blank" rel="noopener sponsored" className="hidden min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex">
+          <a href={AFFILIATE_URL} target="_blank" rel="noopener sponsored" data-offer="bootcamp" data-placement="header" onClick={headerGate} className="hidden min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex">
             Start Free Trial
           </a>
         </div>
@@ -132,13 +138,14 @@ function Index() {
                   <span className="h-2 w-2 rounded-full bg-success" aria-hidden /> Live every weekday · 100% free to join
                 </span>
                 <h1 className="mt-5 text-[clamp(2.25rem,5.2vw+0.6rem,4rem)] font-bold leading-[1.05] tracking-tight sm:mx-auto sm:max-w-3xl lg:mx-0 lg:text-[clamp(2.75rem,3.9vw,4rem)]">
-                  Launch your business on HighLevel <span className="text-gradient">in under 60 minutes</span>, live and free
+                  Automate your leads and bookings on HighLevel <span className="text-gradient">in under 60 minutes</span>, live and free
                 </h1>
                 <p className="mt-5 text-lg text-muted-foreground sm:mx-auto sm:max-w-2xl sm:text-xl lg:mx-0 lg:max-w-xl">
-                  Get a <strong className="text-foreground">30-day free trial</strong> plus a seat in the live, click-by-click bootcamp. No product, experience or tech skills needed.
+                  For local businesses, coaches and service providers. Replace the separate tools you're paying for, and leave with lead follow-up, booking and reviews running on their own. Includes a <strong className="text-foreground">30-day free trial</strong> and a live, click-by-click bootcamp.
                 </p>
                 <CTA
                   id="hero-cta"
+                  placement="hero"
                   pulse
                   label={<><span className="sm:hidden">Claim Free Trial + Bootcamp Seat</span><span className="hidden sm:inline">Claim My Free Trial + Bootcamp Seat</span></>}
                   className="mt-8 items-stretch sm:items-center lg:items-start" buttonClassName="w-full sm:w-auto" />
@@ -154,13 +161,14 @@ function Index() {
         {/* Proof */}
         <div className="border-y border-border bg-card/50">
           <dl className="mx-auto grid max-w-6xl grid-cols-2 px-5 sm:px-8 lg:grid-cols-4">
-            {[["70,000+", "HighLevel users"], ["$500M+", "Revenue generated by users"], ["84+", "Countries"], ["4.9/5", "From 2,000+ reviews"]].map(([n, l], i) => (
+            {[["60 min", "Live setup, start to finish"], ["7.3B", "Leads generated on HighLevel"], ["179M", "Appointments booked"], ["$5.2B+", "Sales facilitated in 2025"]].map(([n, l], i) => (
               <div key={l} className={`flex flex-col-reverse py-7 text-center sm:py-10 ${i % 2 === 0 ? "border-r border-border" : ""} ${i < 2 ? "border-b border-border lg:border-b-0" : ""} ${i === 1 ? "lg:border-r" : ""}`}>
                 <dt className="mt-1 px-2 text-sm text-muted-foreground">{l}</dt>
                 <dd className="font-display text-3xl font-bold tabular-nums text-gradient sm:text-4xl">{n}</dd>
               </div>
             ))}
           </dl>
+          <p className="mx-auto max-w-6xl border-t border-border px-5 py-3 text-center text-xs text-muted-foreground sm:px-8">Platform figures as published by HighLevel on gohighlevel.com (November 2026).</p>
         </div>
 
         {/* Not a webinar */}
@@ -209,7 +217,7 @@ function Index() {
               );
             })}
           </div>
-          <CTA className="mt-10 sm:mt-12" label="Save My Free Bootcamp Seat" />
+          <CTA className="mt-10 sm:mt-12" label="Save My Free Bootcamp Seat" placement="bootcamp-section" />
         </Section>
 
         {/* Bonuses — phone: stacked · tablet: 2 + 1 wide · desktop: 3 across */}
@@ -252,7 +260,7 @@ function Index() {
               </li>
             ))}
           </ol>
-          <CTA className="mt-12" label="Start Step 1 Now" />
+          <CTA className="mt-12" label="Start Step 1 Now" placement="steps" />
         </Section>
 
         {/* Reviews — phone & tablet: swipeable rail with peek · desktop: 3 across */}
@@ -286,7 +294,7 @@ function Index() {
           <div className="text-center lg:sticky lg:top-10 lg:self-start lg:text-left">
             <h2 data-reveal className={H2}>Questions? Answered.</h2>
             <p className="mx-auto mt-4 max-w-md text-muted-foreground lg:mx-0">Still unsure? Start the free trial, join one bootcamp, and decide after you've seen it work.</p>
-            <CTA className="mt-8 hidden lg:flex lg:items-start" label="Start Free Trial" sub={false} />
+            <CTA className="mt-8 hidden lg:flex lg:items-start" label="Start Free Trial" sub={false} placement="faq" />
           </div>
           <Accordion type="single" collapsible className="mx-auto mt-8 max-w-3xl lg:mx-0 lg:mt-0 lg:max-w-none">
             {faqs.map(([q, a]) => (
@@ -330,7 +338,7 @@ function Index() {
             <ShieldCheck className="mx-auto h-12 w-12 text-primary-glow" aria-hidden />
             <h2 data-reveal className={`${H2} mx-auto mt-4 max-w-3xl`}>Your next bootcamp starts in <span className="block text-gradient sm:inline"><Countdown /></span></h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Start your free 30-day trial now and you're in. It costs nothing to try.</p>
-            <CTA className="mt-10 items-stretch sm:items-center" buttonClassName="w-full sm:w-auto" />
+            <CTA className="mt-10 items-stretch sm:items-center" buttonClassName="w-full sm:w-auto" placement="final" />
           </Section>
         </div>
       </main>

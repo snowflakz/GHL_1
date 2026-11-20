@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AFFILIATE_URL } from "@/lib/bootcamp";
 import { cn } from "@/lib/utils";
+import { useGateClick } from "./LeadGate";
 
 /**
  * Phone-only bottom bar. Stays hidden while the hero CTA (#hero-cta) is on screen,
@@ -8,6 +9,7 @@ import { cn } from "@/lib/utils";
  */
 export function StickyCTA() {
   const [show, setShow] = useState(false);
+  const gateClick = useGateClick("sticky");
 
   useEffect(() => {
     const hero = document.getElementById("hero-cta");
@@ -42,6 +44,9 @@ export function StickyCTA() {
         target="_blank"
         rel="noopener sponsored"
         tabIndex={show ? 0 : -1}
+        data-offer="bootcamp"
+        data-placement="sticky"
+        onClick={gateClick}
         className="flex min-h-12 items-center justify-center rounded-full bg-gradient-primary py-3.5 text-center font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Get Free Trial + Bootcamp →
