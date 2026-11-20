@@ -9,8 +9,8 @@ export function PostCard({ post, featured = false }: { post: Post; featured?: bo
       params={{ slug: post.slug }}
       className={`lift group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card/50 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${featured ? "lg:grid lg:grid-cols-[1.1fr_0.9fr]" : ""}`}
     >
-      <div className="overflow-hidden">
-        <img src={post.cover.src} alt="" width={1200} height={630} loading={featured ? "eager" : "lazy"} decoding="async" className="aspect-[1200/630] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] lg:h-full" />
+      <div className={`overflow-hidden ${featured ? "bg-[#0b1020] lg:flex lg:items-center" : ""}`}>
+        <img src={post.cover.src} alt="" width={1200} height={630} loading={featured ? "eager" : "lazy"} decoding="async" className="aspect-[1200/630] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
       </div>
       <div className={`flex flex-1 flex-col p-6 sm:p-7 ${featured ? "lg:justify-center lg:p-12" : ""}`}>
         <p className={`text-xs font-semibold uppercase tracking-widest ${post.category === "AI & automation" ? "text-violet" : "text-primary-glow"}`}>{post.category}</p>

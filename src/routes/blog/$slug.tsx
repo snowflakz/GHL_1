@@ -3,6 +3,8 @@ import { ArrowRight, ArrowUpRight, Clock, Lightbulb, Sparkles, CheckCircle2 } fr
 import { useEffect, useState } from "react";
 import { BlogFooter, BlogHeader } from "@/components/blog/BlogChrome";
 import { PostCard } from "@/components/blog/PostCard";
+import { StackCalculator } from "@/components/blog/StackCalculator";
+import { BackLinks, FloatingNav, ShareBar } from "@/components/blog/PostTools";
 import { Rich, plainText } from "@/components/blog/Rich";
 import { delay } from "@/components/motion/Reveal";
 import { getPost, readingMinutes, related } from "@/content/posts";
@@ -143,6 +145,20 @@ function BlockView({ b, post }: { b: Block; post: Post }) {
           </a>
         </aside>
       );
+    case "calculator":
+      return <StackCalculator />;
+    case "photo":
+      return (
+        <figure className="photo-reveal my-12">
+          <div className="overflow-hidden rounded-3xl border border-border">
+            <img src={b.src} alt={b.alt} width={1600} height={1000} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover" />
+          </div>
+          <figcaption className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            {b.caption && <span>{b.caption}</span>}
+            <a href={b.creditUrl} target="_blank" rel="noopener nofollow" className="text-xs underline decoration-border underline-offset-4 hover:text-foreground">Photo: {b.credit}</a>
+          </figcaption>
+        </figure>
+      );
     case "table":
       return (
         <figure data-reveal className="my-10">
@@ -177,7 +193,8 @@ function PostPage() {
           <div aria-hidden className="orb -left-32 -top-24 h-80 w-80 bg-primary/40" />
           <div aria-hidden className="orb right-0 top-10 h-72 w-72 bg-violet/35 [animation-delay:-9s]" />
           <header className="relative mx-auto max-w-7xl px-5 pb-10 pt-8 sm:px-8 sm:pt-14">
-            <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
+            <BackLinks />
+            <nav aria-label="Breadcrumb" className="mt-5 text-sm text-muted-foreground">
               <ol className="flex flex-wrap items-center gap-1.5">
                 <li><Link to="/" className="hover:text-foreground">Home</Link></li><li aria-hidden>/</li>
                 <li><Link to="/blog" className="hover:text-foreground">Guides</Link></li><li aria-hidden>/</li>
@@ -193,6 +210,7 @@ function PostPage() {
                 <span className="inline-flex items-center gap-1.5"><Clock className="h-4 w-4" aria-hidden />{mins} min read</span>
                 <span>Contains affiliate links</span>
               </p>
+              <div className="mt-5"><ShareBar title={post.title} compact /></div>
             </div>
           </header>
         </div>
@@ -255,7 +273,7 @@ function PostPage() {
                 <div className="relative">
                   <h2 className="text-[clamp(1.7rem,1.6vw+1.2rem,2.5rem)] font-bold leading-tight">{post.close.title}</h2>
                   <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl"><Rich x={post.close.x} offer={post.offer} /></p>
-                  <a href={OFFERS[post.offer].url} target="_blank" rel="sponsored noopener" data-offer={post.offer} data-placement="end" className="group mt-7 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-glow transition-transform duration-150 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
+                  <a href={OFFERS[post.offer].url} target="_blank" rel="sponsored noopener" data-offer={post.offer} data-placement="end" className="shine group mt-7 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-glow transition-transform duration-150 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
                     {post.close.label} <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
                   </a>
                   <p className="mt-3 text-xs text-muted-foreground">Affiliate link. I may earn a commission at no extra cost to you.</p>
@@ -264,7 +282,7 @@ function PostPage() {
             </article>
 
             <aside className="hidden lg:block">
-              <div className="sticky top-8 space-y-8">
+              <div className="sticky top-24 space-y-8">
                 <nav aria-label="On this page">
                   <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">On this page</p>
                   <ol className="mt-4 space-y-1 border-l border-border text-sm">
@@ -280,10 +298,16 @@ function PostPage() {
                   <span className="mt-1.5 block font-display font-semibold leading-snug text-foreground">{OFFERS[post.offer].name}</span>
                   <span className="mt-2 inline-flex items-center gap-1 text-muted-foreground">Take a look <ArrowUpRight className="h-3.5 w-3.5" aria-hidden /></span>
                 </a>
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Share</p>
+                  <ShareBar title={post.title} compact />
+                </div>
               </div>
             </aside>
           </div>
         </div>
+
+        <div className="mx-auto -mt-8 max-w-7xl px-5 pb-16 sm:px-8 lg:pr-[296px] xl:pr-[316px]"><ShareBar title={post.title} /></div>
 
         <section aria-labelledby="more" className="border-t border-border bg-card/30">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
@@ -295,6 +319,7 @@ function PostPage() {
         </section>
       </main>
       <BlogFooter />
+      <FloatingNav sectionIds={ids} />
     </div>
   );
 }

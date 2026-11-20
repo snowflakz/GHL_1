@@ -1,11 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { delay } from "@/components/motion/Reveal";
-import { Check, X, Zap, Users, Rocket, Star, Gift, Clock, ShieldCheck, CalendarDays, Video, Timer, BadgeCheck } from "lucide-react";
+import { ArrowRight, Check, X, Zap, Users, Rocket, Star, Gift, Clock, ShieldCheck, CalendarDays, Video, Timer, BadgeCheck } from "lucide-react";
 import logoUrl from "@/assets/highlevel-logo.png";
 import { CTA } from "@/components/landing/CTA";
 import { Countdown } from "@/components/landing/Countdown";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { LeadGateProvider, useGateClick } from "@/components/landing/LeadGate";
+import { VideoEmbed } from "@/components/landing/VideoEmbed";
+import { GuideCards } from "@/components/landing/GuideCards";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { AFFILIATE_URL } from "@/lib/bootcamp";
 
@@ -52,13 +55,15 @@ const Disclaimer = () => (
 );
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
-  return <section id={id} className={`mx-auto max-w-6xl scroll-mt-6 px-5 py-16 sm:px-8 sm:py-20 lg:py-28 ${className}`}>{children}</section>;
+  return <section id={id} className={`mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20 lg:py-28 ${className}`}>{children}</section>;
 }
 
 /* Fluid type: sized for the device, not just shrunk. */
 const H2 = "text-[clamp(1.875rem,3.2vw+1.1rem,3rem)] font-bold leading-[1.1] tracking-tight";
 
-const nav: [string, string][] = [["#bootcamp", "The bootcamp"], ["#bonuses", "Bonuses"], ["#faq", "FAQ"], ["/blog", "Guides"]];
+const nav: [string, string][] = [["#watch", "Watch"], ["#bootcamp", "The bootcamp"], ["#bonuses", "Bonuses"], ["#faq", "FAQ"], ["/blog", "Free guides"]];
+
+const NAV_LINK = "inline-flex min-h-11 items-center rounded-full px-3.5 text-[0.95rem] font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 const bootcampFacts: [typeof Clock, string, string][] = [
   [CalendarDays, "When", "Every weekday, 11am CT"],
@@ -113,18 +118,27 @@ function LandingPage() {
       </div>
 
       {/* Header: logo-only on phones (sticky bar carries the CTA), button on tablet, nav on desktop */}
-      <header className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4 sm:px-8 sm:py-5">
-        <img src={logoUrl} alt="HighLevel" width={274} height={64} fetchPriority="high" className="h-8 w-auto sm:h-10" />
-        <nav aria-label="Page sections" className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
-          {nav.map(([href, label]) => (
-            <a key={href} href={href} className="rounded transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">{label}</a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-5">
-          <Link to="/blog" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden">Guides</Link>
-          <a href={AFFILIATE_URL} target="_blank" rel="noopener sponsored" data-offer="bootcamp" data-placement="header" onClick={headerGate} className="hidden min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex">
-            Start Free Trial
-          </a>
+      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-8 sm:py-3">
+          <Link to="/" aria-label="Home" className="shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <img src={logoUrl} alt="HighLevel" width={274} height={64} fetchPriority="high" className="h-8 w-auto sm:h-9" />
+          </Link>
+          <nav aria-label="Page sections" className="hidden items-center gap-1 lg:flex">
+            {nav.map(([href, label]) =>
+              href.startsWith("/") ? (
+                <Link key={href} to={href} className={NAV_LINK}>{label}</Link>
+              ) : (
+                <a key={href} href={href} className={NAV_LINK}>{label}</a>
+              ),
+            )}
+          </nav>
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link to="/blog" className={`${NAV_LINK} lg:hidden`}>Guides</Link>
+            <a href={AFFILIATE_URL} target="_blank" rel="noopener sponsored" data-offer="bootcamp" data-placement="header" onClick={headerGate} className="shine group inline-flex min-h-10 shrink-0 items-center whitespace-nowrap gap-1.5 rounded-full bg-gradient-primary px-4 text-sm font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-11 sm:px-5">
+              <span className="sm:hidden">Free trial</span><span className="hidden sm:inline">Start Free Trial</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </a>
+          </div>
         </div>
       </header>
 
@@ -133,7 +147,7 @@ function LandingPage() {
         <div className="relative bg-hero-glow">
           <section className="mx-auto max-w-6xl px-5 pb-16 pt-8 sm:px-8 sm:pb-20 sm:pt-14 lg:pb-28 lg:pt-16">
             <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-              <div className="animate-fade-up sm:text-center lg:text-left">
+              <div className="hero-stagger sm:text-center lg:text-left">
                 <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-muted-foreground">
                   <span className="h-2 w-2 rounded-full bg-success" aria-hidden /> Live every weekday · 100% free to join
                 </span>
@@ -151,7 +165,7 @@ function LandingPage() {
                   className="mt-8 items-stretch sm:items-center lg:items-start" buttonClassName="w-full sm:w-auto" />
                 <p className="mt-6 max-w-xl text-xs leading-relaxed text-muted-foreground sm:mx-auto lg:mx-0"><Disclaimer /></p>
               </div>
-              <div className="animate-fade-up [animation-delay:80ms] sm:mx-auto sm:w-full sm:max-w-3xl lg:max-w-none">
+              <div className="animate-fade-up [animation-delay:340ms] sm:mx-auto sm:w-full sm:max-w-3xl lg:max-w-none">
                 <NextBootcampCard />
               </div>
             </div>
@@ -170,6 +184,27 @@ function LandingPage() {
           </dl>
           <p className="mx-auto max-w-6xl border-t border-border px-5 py-3 text-center text-xs text-muted-foreground sm:px-8">Platform figures as published by HighLevel on gohighlevel.com (November 2026).</p>
         </div>
+
+        {/* Video: proof right after the hero, for visitors who want to see it before they click */}
+        <section id="watch" className="relative mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
+          <div className="mx-auto max-w-3xl text-center">
+            <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">Watch before you join</p>
+            <h2 data-reveal className={`${H2} mt-3`}>See exactly how the <span className="text-gradient">live bootcamp</span> works</h2>
+            <p data-reveal className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">A real HighLevel coach walks you through it, step by step.</p>
+          </div>
+          <div data-reveal="scale" className="relative mt-10 sm:mt-12">
+            <div aria-hidden className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-r from-primary/25 via-violet/20 to-primary-glow/25 blur-3xl" />
+            <div className="relative"><VideoEmbed id="ICBwheORWVs" title="HighLevel free live bootcamp, explained by the coach" poster="/video/bootcamp-coach.jpg" /></div>
+          </div>
+          <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
+            <ul className="grid gap-4 sm:grid-cols-3">
+              {["A coach clicks through every setting with you", "Breakout rooms the moment you get stuck", "Leave with follow-up, booking and reviews on"].map((t, i) => (
+                <li key={t} data-reveal style={delay(i * 80)} className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4 text-[1.0625rem]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-success" aria-hidden />{t}</li>
+              ))}
+            </ul>
+            <CTA className="items-stretch lg:items-end" buttonClassName="w-full sm:w-auto" label="Save My Free Seat" placement="video" />
+          </div>
+        </section>
 
         {/* Not a webinar */}
         <Section>
@@ -251,7 +286,7 @@ function LandingPage() {
               ["Grow your business", "Use your new funnels, CRM and automations to win more clients."],
             ].map(([t, d], i, arr) => (
               <li key={t} data-reveal style={delay(i * 100)} className="relative flex gap-5 lg:block lg:rounded-3xl lg:glass lg:p-8">
-                {i < arr.length - 1 && <span aria-hidden className="absolute left-7 top-16 -bottom-8 w-px bg-gradient-to-b from-primary/60 to-transparent lg:hidden" />}
+                {i < arr.length - 1 && <span aria-hidden className="draw-line absolute left-7 top-16 -bottom-8 w-px bg-gradient-to-b from-primary via-violet/60 to-transparent lg:hidden" />}
                 <div className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-primary/40 bg-card font-display text-xl font-bold text-gradient lg:h-auto lg:w-auto lg:place-items-start lg:rounded-none lg:border-0 lg:bg-transparent lg:text-5xl">0{i + 1}</div>
                 <div className="pt-2 lg:pt-0">
                   <h3 className="text-lg font-semibold sm:text-xl lg:mt-4">{t}</h3>
@@ -306,31 +341,18 @@ function LandingPage() {
           </Accordion>
         </Section>
 
-        {/* Guides: internal links for SEO and for readers who want more before deciding */}
-        <Section id="guides" className="pt-0 sm:pt-0 lg:pt-0">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-violet">Free guides</p>
-              <h2 data-reveal className={`${H2} mt-2`}>Not ready yet? Read up first</h2>
+        {/* Guides: four large animated cards, for visitors who want to read before deciding (and internal links for SEO) */}
+        <section id="guides" className="relative mx-auto max-w-[88rem] scroll-mt-24 px-5 pb-16 sm:px-8 sm:pb-20 lg:pb-28">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">Free guides</p>
+              <h2 data-reveal className={`${H2} mt-2`}>Not ready yet? <span className="text-gradient">Read up first</span></h2>
+              <p data-reveal className="mt-3 text-lg text-muted-foreground">Short, honest guides for business owners. No jargon, no fluff, just what you need to decide.</p>
             </div>
-            <Link to="/blog" className="inline-flex items-center gap-1 text-sm font-semibold text-foreground underline decoration-border underline-offset-4 hover:decoration-foreground">All 10 guides →</Link>
+            <Link to="/blog" className="group inline-flex min-h-11 items-center gap-1.5 self-start rounded-full border border-border px-5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary sm:self-auto">All 11 guides <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden /></Link>
           </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {[
-              ["gohighlevel-pricing", "Pricing & plans", "GoHighLevel pricing, every plan explained"],
-              ["highlevel-ai-receptionist", "AI & automation", "The AI receptionist that answers at 9:14pm"],
-              ["highlevel-5-day-challenge", "Training", "Build a marketing system in 5 days"],
-            ].map(([slug = "", cat, title], i) => (
-              <Link key={slug} to="/blog/$slug" params={{ slug }} data-reveal style={delay(i * 90)} className="lift group overflow-hidden rounded-2xl border border-border bg-card/50 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                <img src={`/blog/${slug}.svg`} alt="" width={1200} height={630} loading="lazy" decoding="async" className="aspect-[1200/630] w-full object-cover" />
-                <div className="p-5">
-                  <p className={`text-xs font-semibold uppercase tracking-widest ${cat === "AI & automation" ? "text-violet" : "text-primary-glow"}`}>{cat}</p>
-                  <p className="mt-1.5 font-display text-lg font-semibold leading-snug">{title}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </Section>
+          <GuideCards />
+        </section>
 
         {/* Final CTA */}
         <div className="relative bg-hero-glow">
@@ -344,15 +366,7 @@ function LandingPage() {
       </main>
 
       {/* Footer — stacked on phones/tablets, logo + legal side by side on desktop */}
-      <footer className="border-t border-border pb-28 sm:pb-10">
-        <div className="mx-auto max-w-6xl px-5 py-10 text-center sm:px-8 lg:flex lg:items-start lg:gap-12 lg:text-left">
-          <img src={logoUrl} alt="HighLevel" width={274} height={64} loading="lazy" className="mx-auto h-7 w-auto opacity-80 lg:mx-0 lg:mt-1" />
-          <div className="lg:flex-1">
-            <p className="mx-auto mt-6 max-w-2xl text-sm text-muted-foreground lg:mx-0 lg:mt-0 lg:max-w-3xl"><strong className="text-foreground">Affiliate disclaimer:</strong> <Disclaimer /> HighLevel and its logo are trademarks of HighLevel, Inc. This page is not owned or operated by HighLevel.</p>
-            <p className="mt-4 text-xs text-muted-foreground">© {new Date().getFullYear()} · Independent affiliate page · <Link to="/blog" className="underline underline-offset-4 hover:text-foreground">HighLevel guides</Link></p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter className="pb-28 sm:pb-0" />
 
       <StickyCTA />
     </div>

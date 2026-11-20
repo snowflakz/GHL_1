@@ -16,7 +16,9 @@ export type Block =
   | { t: "tip"; title: string; x: string }
   | { t: "offer"; title: string; x: string; label: string }
   | { t: "table"; head: string[]; rows: string[][]; caption?: string }
-  | { t: "quote"; x: string };
+  | { t: "quote"; x: string }
+  | { t: "calculator" }
+  | { t: "photo"; src: string; alt: string; caption?: string; credit: string; creditUrl: string };
 
 export type Post = {
   slug: string;

@@ -33,3 +33,21 @@ stay smooth, and its contrast on the navy background is about 7:1 (passes WCAG A
 - Page changes cross-fade (View Transitions); exit 160ms, enter 320ms.
 - Hover lift only on `(hover: hover) and (pointer: fine)`; buttons scale to 0.97 on press.
 - `prefers-reduced-motion`: no movement anywhere.
+- Added 2026-11-20: hero children rise in sequence on load (70ms steps); photos unveil with a clip-path
+  wipe as they scroll in; the step timeline's connector draws on scroll; primary buttons get a single light
+  sweep on hover (desktop only, never looping); guide cards lift with a gradient border glow and a cover sweep.
+
+## Navigation and links
+- Header is sticky on every page, with a solid gradient trial button (visible on phones as "Free trial").
+- Nav links are 15px at 80% white, with full 44px tap targets and a pill hover; never small grey text.
+- One shared footer (`components/site/SiteFooter.tsx`): Start here / Popular guides / Explore columns plus the
+  main offer as a button, so visitors who reach the bottom always have a clear next click.
+- Guides get Back + Home buttons, social sharing (WhatsApp, Facebook, X, LinkedIn, email, copy link, native share
+  on phones) and floating controls (all guides, home, previous/next section, top).
+
+## Imagery
+- Covers: custom SVG illustrations (`public/blog/*.svg`) with PNG share images (`public/blog/og/`).
+- Photos: one relatable photo per guide from Pixabay (Pixabay Content License: free commercial use, no
+  attribution required; each is credited and linked anyway). Sources are listed in `src/content/photos.ts`.
+- Video: the bootcamp explainer (YouTube `ICBwheORWVs`) loads as a local poster image and only fetches
+  YouTube (privacy-enhanced domain) when someone presses play.

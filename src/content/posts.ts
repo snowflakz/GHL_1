@@ -3,12 +3,15 @@ import { planPosts } from "./posts-plans";
 import { agencyPosts } from "./posts-agency";
 import { trainingPosts } from "./posts-training";
 import { aiPosts } from "./posts-ai";
+import { savingsPosts } from "./posts-savings";
 import { extras } from "./extras";
 import { moreExtras } from "./extras-more";
+import { photos } from "./photos";
 
 /** Display order on /blog: highest-intent, most beginner-friendly first. */
 const ORDER = [
   "free-highlevel-bootcamp",
+  "what-does-gohighlevel-replace",
   "what-is-gohighlevel",
   "gohighlevel-pricing",
   "highlevel-ai-receptionist",
@@ -44,7 +47,16 @@ function enrich(p: Post): Post {
   };
 }
 
-const all = [...planPosts, ...agencyPosts, ...trainingPosts, ...aiPosts].map(enrich);
+/** Insert each guide's photo (content/photos.ts) after all other blocks are in place. */
+function withPhoto(p: Post): Post {
+  const ph = photos[p.slug];
+  if (!ph) return p;
+  const at = p.body.findIndex((b) => b.t === "h2" && b.id === ph.insertBefore);
+  const body = at === -1 ? [...p.body.slice(0, 3), ph.block, ...p.body.slice(3)] : [...p.body.slice(0, at), ph.block, ...p.body.slice(at)];
+  return { ...p, body };
+}
+
+const all = [...planPosts, ...agencyPosts, ...trainingPosts, ...aiPosts, ...savingsPosts].map(enrich).map(withPhoto);
 export const posts: Post[] = ORDER.map((s) => all.find((p) => p.slug === s)).filter((p): p is Post => Boolean(p));
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);

@@ -45,7 +45,7 @@ export function initPixel() {
   window.fbq("init", META_PIXEL_ID);
 }
 
-export function track(event: "PageView" | "Lead" | "CompleteRegistration", params: Record<string, unknown> = {}) {
+export function track(event: "PageView" | "Lead" | "CompleteRegistration" | "ViewContent", params: Record<string, unknown> = {}) {
   if (!pixelEnabled() || !window.fbq) return;
   window.fbq("track", event, params, { eventID: newEventId() });
 }

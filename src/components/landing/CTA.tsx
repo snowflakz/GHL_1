@@ -27,7 +27,7 @@ export function CTA({ label = "Claim My Free Trial + Bootcamp Seat", className, 
         data-placement={placement}
         onClick={onClick}
         className={cn(
-          "group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-primary px-7 py-4 text-center text-base font-bold text-primary-foreground shadow-glow transition-transform duration-150 ease-out hover:scale-[1.03] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-8 sm:text-lg",
+          "shine group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-primary px-7 py-4 text-center text-base font-bold text-primary-foreground shadow-glow transition-transform duration-150 ease-out hover:scale-[1.03] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:px-8 sm:text-lg",
           pulse && "animate-pulse-ring",
           buttonClassName,
         )}
