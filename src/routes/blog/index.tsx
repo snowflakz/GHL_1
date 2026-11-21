@@ -49,7 +49,7 @@ function BlogIndex() {
   const bySlug = (s: string) => posts.find((p) => p.slug === s);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background font-sans text-foreground">
       <BlogHeader />
       <main id="main">
         <div className="relative overflow-hidden">

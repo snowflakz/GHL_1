@@ -190,7 +190,7 @@ function PostPage() {
   const mins = readingMinutes(post);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background font-sans text-foreground">
       <div className="read-progress" aria-hidden />
       <BlogHeader />
       <main id="main">

@@ -105,7 +105,7 @@ function Index() {
 
 function LandingPage() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
+    <div className="min-h-screen overflow-x-clip bg-background font-sans text-foreground">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-background focus:px-4 focus:py-2">Skip to content</a>
 
       {/* Top bar: short on phones, full sentence from tablet up */}
@@ -185,24 +185,24 @@ function LandingPage() {
         </div>
 
         {/* Video: proof right after the hero, for visitors who want to see it before they click */}
-        <section id="watch" className="cv-auto relative mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
+        {/* Desktop: video capped so heading + video + "Save My Free Seat" fit in one screen; button sits right under the video. */}
+        <section id="watch" className="cv-auto relative mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8 sm:pt-20 lg:scroll-mt-0 lg:pt-24">
           <div className="mx-auto max-w-3xl text-center">
             <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">Watch before you join</p>
             <h2 data-reveal className={`${H2} mt-3`}>See exactly how the <span className="text-gradient">live bootcamp</span> works</h2>
-            <p data-reveal className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">A real HighLevel coach walks you through it, step by step.</p>
+            <p data-reveal className="mx-auto mt-3 max-w-2xl text-lg text-muted-foreground sm:text-xl">A real HighLevel coach walks you through it, step by step.</p>
           </div>
-          <div data-reveal="scale" className="relative mt-10 sm:mt-12">
+          {/* Desktop width follows screen height: as big as fits with the heading and button on screen (480–864px wide). */}
+          <div data-reveal="scale" className="relative mx-auto mt-8 sm:mt-10 lg:max-w-[max(30rem,min(54rem,calc((100svh_-_410px)*1.7778)))]">
             <div aria-hidden className="pointer-events-none absolute -inset-6 rounded-[2.5rem] bg-gradient-to-r from-primary/25 via-violet/20 to-primary-glow/25 blur-3xl" />
             <div className="relative"><VideoEmbed id="ICBwheORWVs" title="HighLevel free live bootcamp, explained by the coach" poster="/video/bootcamp-coach.jpg" /></div>
           </div>
-          <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {["A coach clicks through every setting with you", "Breakout rooms the moment you get stuck", "Leave with follow-up, booking and reviews on"].map((t, i) => (
-                <li key={t} data-reveal style={delay(i * 80)} className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4 text-[1.0625rem]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-success" aria-hidden />{t}</li>
-              ))}
-            </ul>
-            <CTA className="items-stretch lg:items-end" buttonClassName="w-full sm:w-auto" label="Save My Free Seat" placement="video" />
-          </div>
+          <CTA className="mt-6 items-stretch sm:items-center sm:mt-7" buttonClassName="w-full sm:w-auto" label="Save My Free Seat" placement="video" />
+          <ul className="mx-auto mt-8 grid max-w-5xl gap-4 sm:grid-cols-3">
+            {["A coach clicks through every setting with you", "Breakout rooms the moment you get stuck", "Leave with follow-up, booking and reviews on"].map((t, i) => (
+              <li key={t} data-reveal style={delay(i * 80)} className="flex items-start gap-3 rounded-2xl border border-border bg-card/50 p-4 text-[1.0625rem]"><Check className="mt-0.5 h-5 w-5 shrink-0 text-success" aria-hidden />{t}</li>
+            ))}
+          </ul>
         </section>
 
         {/* Not a webinar */}
