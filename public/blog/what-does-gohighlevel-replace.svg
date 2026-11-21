@@ -30,8 +30,8 @@
 <path d="M912 290 h70" stroke="#5fd4f0" stroke-width="4" stroke-linecap="round"/><path d="M972 278 l16 12 -16 12" fill="none" stroke="#5fd4f0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
 <!-- single HighLevel tile -->
 <rect x="1004" y="214" width="150" height="150" rx="28" fill="rgba(59,139,255,0.16)" stroke="url(#g)" stroke-width="3"/>
-<g transform="translate(1046,250)"><path d="M10 52 V18 M0 28 L10 14 L20 28" stroke="#f5cf3a" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 52 V30 M23 40 L33 26 L43 40" stroke="#3b8bff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M56 52 V12 M46 22 L56 8 L66 22" stroke="#3fd17a" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g transform="translate(1049,252)"><circle cx="30" cy="30" r="30" fill="rgba(63,209,122,0.18)" stroke="#3fd17a" stroke-width="4"/><path d="M17 31 l9 9 l18 -19" fill="none" stroke="#3fd17a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
 <text x="1079" y="340" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#f2f5ff">One login</text>
 <text x="1079" y="400" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700" fill="#3fd17a">from $97/mo</text>
-<g transform="translate(72,540)"><rect width="30" height="6" rx="3" fill="#f5cf3a"/><rect x="38" width="30" height="6" rx="3" fill="#3b8bff"/><rect x="76" width="30" height="6" rx="3" fill="#3fd17a"/></g>
+<g transform="translate(72,540)"><rect width="30" height="6" rx="3" fill="#2f80ff"/><rect x="38" width="30" height="6" rx="3" fill="#8b5cf6"/><rect x="76" width="30" height="6" rx="3" fill="#f59e0b"/></g>
 </svg>

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Calculator, TrendingDown } from "lucide-react";
-import { OFFERS } from "@/lib/bootcamp";
+import { OptInButton } from "@/components/funnel/OptIn";
 
 /**
  * "Add up your stack" calculator. Starting figures are the example monthly prices from HighLevel's own
@@ -102,9 +102,9 @@ export function StackCalculator() {
             </div>
             <p className="mt-3 text-xs leading-relaxed text-muted-foreground">Before HighLevel's SMS, email and call usage, which is billed separately. Plus: HighLevel's white-label mobile app has no separate-tool equivalent.</p>
 
-            <a href={OFFERS.bootcamp.url} target="_blank" rel="sponsored noopener" data-offer="bootcamp" data-placement="calculator" className="group mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-5 font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <OptInButton placement="calculator" className="group mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-5 font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
               Test it free for 30 days →
-            </a>
+            </OptInButton>
           </div>
         </aside>
       </div>

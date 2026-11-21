@@ -9,7 +9,8 @@ import { Rich, plainText } from "@/components/blog/Rich";
 import { delay } from "@/components/motion/Reveal";
 import { getPost, readingMinutes, related } from "@/content/posts";
 import type { Block, Post } from "@/content/types";
-import { OFFERS } from "@/lib/bootcamp";
+import { OFFERS, type OfferKey } from "@/lib/bootcamp";
+import { OptInButton } from "@/components/funnel/OptIn";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -85,6 +86,11 @@ export const Route = createFileRoute("/blog/$slug")({
   component: PostPage,
 });
 
+/** Offer CTA: the bootcamp offer opens the opt-in (its affiliate link lives only on the thank-you step); other offers link directly. */
+function OfferCta({ offer, placement, className, children }: { offer: OfferKey; placement: string; className?: string; children: React.ReactNode }) {
+  if (offer === "bootcamp") return <OptInButton placement={`blog-${placement}`} className={`${className ?? ""} text-left`}>{children}</OptInButton>;
+  return <a href={OFFERS[offer].url} target="_blank" rel="sponsored noopener" data-offer={offer} data-placement={placement} className={className}>{children}</a>;
+}
 const fmtDate = (iso: string) => new Intl.DateTimeFormat("en-US", { dateStyle: "long", timeZone: "UTC" }).format(new Date(iso));
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const coverAlt = (p: Post) => (p.keyword ? `${cap(p.keyword)}: ${p.cover.alt}` : p.cover.alt);
@@ -140,9 +146,9 @@ function BlockView({ b, post }: { b: Block; post: Post }) {
           <p className="relative inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary-glow"><Sparkles className="h-3.5 w-3.5" aria-hidden /> Worth a look</p>
           <p className="relative mt-4 font-display text-[clamp(1.4rem,1vw+1.1rem,1.85rem)] font-semibold leading-tight text-foreground">{b.title}</p>
           <p className="relative mt-3 max-w-[60ch] text-[1.0625rem] leading-relaxed text-muted-foreground sm:text-lg"><R x={b.x} /></p>
-          <a href={OFFERS[post.offer].url} target="_blank" rel="sponsored noopener" data-offer={post.offer} data-placement="mid" className="group relative mt-6 inline-flex min-h-12 items-center gap-2 rounded-full border border-primary/60 bg-primary/10 px-6 font-semibold text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <OfferCta offer={post.offer} placement="mid" className="group relative mt-6 inline-flex min-h-12 items-center gap-2 rounded-full border border-primary/60 bg-primary/10 px-6 font-semibold text-foreground transition-[background-color,transform] duration-200 hover:bg-primary/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             {b.label} <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-          </a>
+          </OfferCta>
         </aside>
       );
     case "calculator":
@@ -201,7 +207,7 @@ function PostPage() {
                 <li className="text-foreground/80">{post.category}</li>
               </ol>
             </nav>
-            <div className="animate-fade-up">
+            <div className="hero-stagger">
               <p className="mt-6 inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary-glow">{post.category}</p>
               <h1 className="mt-4 max-w-4xl text-[clamp(2.1rem,3.8vw+1rem,3.9rem)] font-bold leading-[1.05] tracking-tight">{post.title}</h1>
               <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl lg:text-[1.35rem]">{post.excerpt}</p>
@@ -273,10 +279,10 @@ function PostPage() {
                 <div className="relative">
                   <h2 className="text-[clamp(1.7rem,1.6vw+1.2rem,2.5rem)] font-bold leading-tight">{post.close.title}</h2>
                   <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl"><Rich x={post.close.x} offer={post.offer} /></p>
-                  <a href={OFFERS[post.offer].url} target="_blank" rel="sponsored noopener" data-offer={post.offer} data-placement="end" className="shine group mt-7 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-glow transition-transform duration-150 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
+                  <OfferCta offer={post.offer} placement="end" className="shine group mt-7 inline-flex min-h-13 w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-lg font-bold text-primary-foreground shadow-glow transition-transform duration-150 hover:scale-[1.02] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:w-auto">
                     {post.close.label} <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
-                  </a>
-                  <p className="mt-3 text-xs text-muted-foreground">Affiliate link. I may earn a commission at no extra cost to you.</p>
+                  </OfferCta>
+                  {post.offer !== "bootcamp" && <p className="mt-3 text-xs text-muted-foreground">Affiliate link. I may earn a commission at no extra cost to you.</p>}
                 </div>
               </section>
             </article>
@@ -293,11 +299,11 @@ function PostPage() {
                     ))}
                   </ol>
                 </nav>
-                <a href={OFFERS[post.offer].url} target="_blank" rel="sponsored noopener" data-offer={post.offer} data-placement="sidebar" className="lift block rounded-2xl border border-border bg-card/60 p-4 text-sm">
+                <OfferCta offer={post.offer} placement="sidebar" className="lift block rounded-2xl border border-border bg-card/60 p-4 text-sm">
                   <span className="text-xs font-semibold uppercase tracking-widest text-primary-glow">Featured in this guide</span>
                   <span className="mt-1.5 block font-display font-semibold leading-snug text-foreground">{OFFERS[post.offer].name}</span>
                   <span className="mt-2 inline-flex items-center gap-1 text-muted-foreground">Take a look <ArrowUpRight className="h-3.5 w-3.5" aria-hidden /></span>
-                </a>
+                </OfferCta>
                 <div>
                   <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Share</p>
                   <ShareBar title={post.title} compact />
@@ -309,7 +315,7 @@ function PostPage() {
 
         <div className="mx-auto -mt-8 max-w-7xl px-5 pb-16 sm:px-8 lg:pr-[296px] xl:pr-[316px]"><ShareBar title={post.title} /></div>
 
-        <section aria-labelledby="more" className="border-t border-border bg-card/30">
+        <section aria-labelledby="more" className="cv-auto border-t border-border bg-card/30">
           <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:py-20">
             <h2 id="more" data-reveal className="text-[clamp(1.6rem,1.5vw+1.1rem,2.25rem)] font-bold">Keep reading</h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

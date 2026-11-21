@@ -5,11 +5,11 @@ const DATE = "2026-11-18";
 export const planPosts: Post[] = [
   {
     slug: "what-is-gohighlevel",
-    offer: "platform",
+    offer: "bootcamp",
     category: "Getting started",
     title: "What is GoHighLevel? The plain-English guide for busy business owners",
     seoTitle: "What Is GoHighLevel? A Plain-English Guide (2026)",
-    description: "What GoHighLevel actually does, who it's for, what the Starter, Unlimited and Founder plans cost, and how to test it free for 14 days before paying.",
+    description: "What GoHighLevel actually does, who it's for, what the Starter, Unlimited and Founder plans cost, and how to test it free for 30 days before paying.",
     keywords: ["what is GoHighLevel", "GoHighLevel review", "HighLevel CRM", "all-in-one marketing platform", "GoHighLevel free trial"],
     excerpt: "Eleven browser tabs, one spreadsheet and a lot of tape. Here's what HighLevel replaces, what it costs and who should skip it.",
     date: DATE,
@@ -33,7 +33,7 @@ export const planPosts: Post[] = [
       { t: "h2", id: "who-its-for", x: "Who it's built for (and who should skip it)" },
       { t: "p", x: "HighLevel fits **freelancers and solo marketers** managing a few businesses, **agencies** running marketing for many clients, and **local service businesses** (think clinics, trades, coaches, salons) that live and die by leads and appointments." },
       { t: "p", x: "Skip it if all you need is a newsletter, or if you'll never touch automations. You'd be buying a Swiss Army knife to open one letter." },
-      { t: "offer", title: "Try it on your own business first", x: "HighLevel runs a **14-day free trial**: no obligation, cancel at any time. The fastest way to know if it fits is to build one real funnel and one follow-up in it this week, on your own leads.", label: "Start the 14-day trial" },
+      { t: "offer", title: "Try it on your own business first", x: "Join the free live bootcamp and you get a **30-day free trial**: cancel anytime. The fastest way to know if it fits is to build one real funnel and one follow-up in it this week, on your own leads.", label: "Get the 30-day free trial" },
       { t: "h2", id: "pricing", x: "What GoHighLevel costs" },
       { t: "table", head: ["Plan", "Monthly price", "Best for", "Highlights"], rows: [
         ["Starter", "$97", "Freelancers and solo marketers", "3 sub-accounts, unlimited contacts and users, 24/7 support, all core features"],
@@ -58,12 +58,12 @@ export const planPosts: Post[] = [
       ] },
     ],
     faq: [
-      ["Is GoHighLevel free?", "There's no free-forever plan, but HighLevel offers a 14-day free trial with no obligation. You can cancel at any time before it ends."],
+      ["Is GoHighLevel free?", "There's no free-forever plan, but you can try it free for 30 days through the free live bootcamp, and cancel at any time before the trial ends."],
       ["Are HighLevel and GoHighLevel the same thing?", "Yes. HighLevel is the company and product; GoHighLevel comes from its web address, gohighlevel.com."],
       ["Is GoHighLevel hard to learn?", "It has a lot of features, so there is a learning curve. Starting with one goal, or joining a guided session like the free bootcamp or 5 Day Challenge, shortens it a lot."],
       ["Can I cancel GoHighLevel anytime?", "HighLevel's site says there's no obligation and you can cancel at any time."],
     ],
-    close: { title: "Your next step", x: "If HighLevel sounds like it could replace a few of those tabs, don't take my word for it. [Open a free 14-day trial](@offer), build one funnel and one automation, and judge it on your own numbers.", label: "Start your free trial" },
+    close: { title: "Your next step", x: "If HighLevel sounds like it could replace a few of those tabs, don't take my word for it. [Claim the free 30-day trial](@offer), build one funnel and one automation, and judge it on your own numbers.", label: "Start your free trial" },
   },
 
   {
@@ -99,7 +99,7 @@ export const planPosts: Post[] = [
       { t: "p", x: "Solo marketers, freelancers and small business owners who **already know they want HighLevel** and will stay at three businesses or fewer for the next year. If that's you, the [$970 Starter annual offer](@offer) is the simplest way to lock in the lower price." },
       { t: "offer", title: "Already sure? Lock in the yearly price", x: "The Starter annual plan is **$970 a year** with no contracts, and HighLevel says you can cancel at any time through its support team.", label: "See the $970 Starter offer" },
       { t: "h2", id: "who-should-wait", x: "When you should NOT go annual (yet)" },
-      { t: "p", x: "If you've never logged into HighLevel, start with the [14-day free trial](@platform) or the [free live bootcamp](/) first. Two weeks of hands-on use will tell you more than any review, including this one. And if you expect to manage more than three businesses soon, compare [Starter vs Unlimited annual](/blog/highlevel-annual-plans-starter-vs-unlimited) before committing." },
+      { t: "p", x: "If you've never logged into HighLevel, start with the [free live bootcamp and its 30-day trial](@bootcamp) first. Two weeks of hands-on use will tell you more than any review, including this one. And if you expect to manage more than three businesses soon, compare [Starter vs Unlimited annual](/blog/highlevel-annual-plans-starter-vs-unlimited) before committing." },
       { t: "h2", id: "terms", x: "The small print, in normal words" },
       { t: "ul", items: [
         "It's billed at $970 per year; HighLevel will charge the card on file unless you cancel.",
@@ -144,7 +144,7 @@ export const planPosts: Post[] = [
       ], caption: "From HighLevel's annual offer page, checked 18 November 2026." },
       { t: "h2", id: "three-rule", x: "The three-business rule" },
       { t: "p", x: "A sub-account is a separate workspace for one business, with its own contacts, calendars, funnels and automations. **Starter gives you three.** If your plan for the year is “my business plus a couple of clients”, Starter is plenty. If your plan is “sign as many clients as I can”, you'll hit the ceiling fast, and Unlimited's whole point is that there isn't one." },
-      { t: "tip", title: "Quick gut check", x: "Count the businesses you'll realistically manage by next November. 1–3: Starter. 4 or more, or you're building an agency: Unlimited. Not sure at all: run the 14-day trial before deciding." },
+      { t: "tip", title: "Quick gut check", x: "Count the businesses you'll realistically manage by next November. 1–3: Starter. 4 or more, or you're building an agency: Unlimited. Not sure at all: use the free 30-day trial before deciding." },
       { t: "h2", id: "unlimited-extras", x: "What Unlimited adds besides more sub-accounts" },
       { t: "ul", items: [
         "**Rebilling phone and email at cost.** Your clients' messaging usage can be billed back to them with no markup, so their texts don't eat your margin.",
@@ -171,7 +171,7 @@ export const planPosts: Post[] = [
 
   {
     slug: "gohighlevel-pricing",
-    offer: "summerPromo",
+    offer: "bootcamp",
     category: "Pricing & plans",
     title: "GoHighLevel pricing explained: every plan, every extra, no surprises",
     seoTitle: "GoHighLevel Pricing 2026: Every Plan Explained",
@@ -187,11 +187,11 @@ export const planPosts: Post[] = [
         ["Starter", "$97 / month", "Freelancers and solo marketers", "3 sub-accounts, unlimited contacts and users, 24/7 support, all core features"],
         ["Unlimited", "$297 / month", "Agencies and growing businesses", "Unlimited sub-accounts, user and agent reporting, rebill phone and email at cost, basic API"],
         ["Founder", "$497 / month", "Founders, agencies, consultants, service providers", "Founder feature set, rebilling with markup, Founders Club, HL Partner Network, “the most free AI”"],
-      ], caption: "Prices shown on HighLevel's plans page on 18 November 2026. Each plan has a 14-day free trial." },
+      ], caption: "Prices shown on HighLevel's plans page on 18 November 2026. You can try HighLevel free for 30 days through the live bootcamp." },
       { t: "p", x: "Every plan includes the same core engine: CRM, funnels and websites, email and SMS, calendars, payments, reviews and automations. You're mostly paying for **how many businesses you can run** and **how much you can resell**." },
       { t: "h2", id: "founder", x: "What's special about Founder?" },
       { t: "p", x: "Founder is HighLevel's top tier and the one it labels most popular. Two things stand out. **Rebilling with markup** means you can charge clients for their messaging usage and keep a margin, turning a cost into a profit line. And **Founders Club plus the Partner Network** puts you in rooms with other agency owners, which, for a lot of people, is worth more than any feature." },
-      { t: "offer", title: "Not sure which tier? Try before you pick", x: "Every plan starts with a **14-day free trial**: no obligation, cancel at any time. Most people know which tier they need by the end of week one.", label: "Start your free trial" },
+      { t: "offer", title: "Not sure which tier? Try before you pick", x: "Through the free live bootcamp you get a **30-day free trial**: cancel anytime. Most people know which tier they need by the end of week one.", label: "Start your free trial" },
       { t: "h2", id: "annual", x: "Monthly vs annual billing" },
       { t: "p", x: "Pay yearly and Starter drops to **$970** (saving $194) while Unlimited drops to **$2,970** (saving $594). The trade-off is commitment, so it's best once you've tested the platform. The details are in the [Starter annual review](/blog/highlevel-starter-annual-plan-970) and the [Starter vs Unlimited annual comparison](/blog/highlevel-annual-plans-starter-vs-unlimited)." },
       { t: "h2", id: "extras", x: "The extras nobody mentions in the sales video" },
@@ -210,7 +210,7 @@ export const planPosts: Post[] = [
     ],
     faq: [
       ["How much does GoHighLevel cost per month?", "Starter is $97, Unlimited is $297 and Founder is $497 per month, as listed on HighLevel's site in November 2026."],
-      ["Does GoHighLevel have a free trial?", "Yes, each plan starts with a 14-day free trial with no obligation."],
+      ["Does GoHighLevel have a free trial?", "Yes. Through the free live bootcamp you get a 30-day free trial."],
       ["Are there extra fees?", "Messaging and calling usage (SMS, email, phone) is charged separately from the plan at small per-use rates."],
       ["Is there an annual discount?", "Yes. Starter is $970 per year and Unlimited is $2,970 per year, saving $194 and $594 respectively compared with monthly billing."],
     ],

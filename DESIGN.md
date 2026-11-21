@@ -1,7 +1,16 @@
 # DESIGN.md
 
-Design source of truth for the HighLevel bootcamp affiliate site (landing page + `/blog` guides).
+Design source of truth for the NuvoraCore site (HighLevel affiliate: landing page + `/blog` guides).
 Tokens live in `src/styles.css` (`:root` and `@theme inline`).
+
+## Brand (updated 2026-11-21)
+- Brand is **NuvoraCore** ("Connect. Automate. Grow."). Logo files live in `public/brand/` and render through
+  `src/components/site/BrandLogo.tsx`: header = mark + wordmark (177×32, WebP + PNG, 1x/2x); footer = lockup with tagline.
+- The logo was cut out of the supplied raster (smoky background removed). The "A GoHighLevel Affiliate Partner" line
+  was left out because it contains the HighLevel logo.
+- Hard rule: never use the HighLevel logo or HighLevel's colours as a brand identity. The tri-colour dash on blog
+  covers is NuvoraCore blue / violet / orange, and the accent token moved from yellow to NuvoraCore orange.
+- Browser tab titles lead with the brand and stay evergreen (no trial length in `<title>`).
 
 ## Colour: one job per colour
 
@@ -11,7 +20,7 @@ Tokens live in `src/styles.css` (`:root` and `@theme inline`).
 | `--primary` | `oklch(0.68 0.19 250)` | Blue. **Action colour only**: CTA buttons, links, focus rings. Taken from the logo's blue arrow. |
 | `--primary-glow` | `oklch(0.82 0.14 210)` | Cyan. Pairs with blue in the CTA gradient and labels. |
 | `--violet` | `oklch(0.72 0.18 295)` | **Supporting colour (added 2026-11-18).** Job: depth and highlight: headline accent gradients, section numbers, pull-quote rules, reading progress, background glows, the AI category. Never used on buttons, so every CTA keeps reading as "blue = act". |
-| `--accent` | `oklch(0.85 0.17 90)` | Yellow, from the logo. Badges ("FREE BONUS"), stars, tips. |
+| `--accent` | `oklch(0.79 0.16 62)` | NuvoraCore orange (from the logo's N accent). Badges ("FREE BONUS"), tips. |
 | `--success` | `oklch(0.75 0.17 150)` | Green, from the logo. Ticks, "live" dots, key takeaways. |
 | `--destructive` | `oklch(0.65 0.21 25)` | Red. The "trying alone" crosses only. |
 

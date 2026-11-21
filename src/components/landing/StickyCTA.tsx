@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { AFFILIATE_URL } from "@/lib/bootcamp";
 import { cn } from "@/lib/utils";
-import { useGateClick } from "./LeadGate";
+import { useOptIn } from "@/components/funnel/OptIn";
 
 /**
  * Phone-only bottom bar. Stays hidden while the hero CTA (#hero-cta) is on screen,
@@ -9,7 +8,7 @@ import { useGateClick } from "./LeadGate";
  */
 export function StickyCTA() {
   const [show, setShow] = useState(false);
-  const gateClick = useGateClick("sticky");
+  const { openOptIn } = useOptIn();
 
   useEffect(() => {
     const hero = document.getElementById("hero-cta");
@@ -39,18 +38,16 @@ export function StickyCTA() {
       style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
       aria-hidden={!show}
     >
-      <a
-        href={AFFILIATE_URL}
-        target="_blank"
-        rel="noopener sponsored"
+      <button
+        type="button"
         tabIndex={show ? 0 : -1}
-        data-offer="bootcamp"
+        data-cta-optin
         data-placement="sticky"
-        onClick={gateClick}
-        className="flex min-h-12 items-center justify-center rounded-full bg-gradient-primary py-3.5 text-center font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        onClick={() => openOptIn("sticky")}
+        className="flex min-h-12 w-full items-center justify-center rounded-full bg-gradient-primary py-3.5 text-center font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         Get Free Trial + Bootcamp →
-      </a>
+      </button>
     </div>
   );
 }

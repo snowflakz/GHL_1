@@ -7,7 +7,7 @@ import { delay } from "@/components/motion/Reveal";
 import { posts } from "@/content/posts";
 import type { Post } from "@/content/types";
 
-const TITLE = "GoHighLevel Guides: Pricing, Free Training, AI & SaaS Pro";
+const TITLE = "GoHighLevel Guides: Pricing, Training & AI | NuvoraCore";
 const DESC = "Plain-English GoHighLevel guides: pricing and annual plans, the free bootcamp and 5 Day Challenge, the AI receptionist, Voice AI and the SaaS Pro plan for agencies.";
 
 export const Route = createFileRoute("/blog/")({
@@ -56,7 +56,7 @@ function BlogIndex() {
           <div aria-hidden className="orb -left-40 -top-32 h-[26rem] w-[26rem] bg-primary/40" />
           <div aria-hidden className="orb -right-24 top-24 h-80 w-80 bg-violet/35 [animation-delay:-9s]" />
           <header className="relative mx-auto max-w-7xl px-5 pb-12 pt-12 sm:px-8 sm:pt-20 lg:pb-16">
-            <div className="animate-fade-up max-w-4xl">
+            <div className="hero-stagger max-w-4xl">
               <p className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-primary-glow">GoHighLevel guides</p>
               <h1 className="mt-5 text-[clamp(2.5rem,4.6vw+1rem,4.75rem)] font-bold leading-[1.02] tracking-tight">Figure out HighLevel <span className="text-gradient">without the jargon</span></h1>
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl lg:text-[1.4rem]">What it costs, which plan fits, how to learn it fast and where AI actually helps. Written for busy owners and checked against HighLevel's own pages.</p>

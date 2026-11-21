@@ -21,7 +21,7 @@ export const moreExtras: Record<string, More> = {
   },
 
   "what-is-gohighlevel": {
-    description: "What is GoHighLevel? What it does, who it's for, what Starter, Unlimited and Founder cost, and how to test it free for 14 days before you pay.",
+    description: "What is GoHighLevel? What it does, who it's for, what Starter, Unlimited and Founder cost, and how to test it free for 30 days before you pay.",
     more: [{ insertBefore: "downsides", blocks: [
       { t: "h2", id: "is-gohighlevel-worth-it", x: "Is GoHighLevel worth it? Three honest questions" },
       { t: "ol", items: [
@@ -41,7 +41,7 @@ export const moreExtras: Record<string, More> = {
       { t: "ul", items: [
         "**Unlimited contacts and unlimited users**, so no per-seat surprises as your team grows.",
         "**The core toolkit**: CRM, funnels and websites, email and SMS, calendars, payments, reviews and workflows.",
-        "**A 14-day free trial** to test it before you're billed.",
+        "**A free trial** to test it before you're billed: 30 days when you join through the free live bootcamp.",
       ] },
       { t: "p", x: "So the real pricing question isn't “which features do I get?”. It's “how many businesses will I run, and do I want to resell?”" },
     ] }],
@@ -119,7 +119,7 @@ export const moreExtras: Record<string, More> = {
   },
 
   "highlevel-saas-pro-free-trial": {
-    description: "How to use the HighLevel SaaS Pro free trial: 14 days to test selling your own branded software to clients, with a day-by-day plan and a pitch script.",
+    description: "How to use the HighLevel SaaS Pro free trial to test selling your own branded software to clients, with a day-by-day plan and a pitch script.",
     more: [{ insertBefore: "existing", blocks: [
       { t: "h2", id: "pricing-your-saas", x: "Pricing your first SaaS package during the HighLevel SaaS Pro free trial" },
       { t: "ul", items: [

@@ -34,7 +34,7 @@ export const trainingPosts: Post[] = [
         "**Reputation and review management**, so happy customers become public proof.",
       ] },
       { t: "tip", title: "Prep in five minutes", x: "Have your logo, your business phone number and a list of your services open in a tab before you join. You'll fly through the setup while others are hunting for files." },
-      { t: "offer", title: "Grab a seat in the next one", x: "Joining is free, and it comes with a **30-day free trial** of HighLevel, double the usual 14 days. Sign up through the bootcamp page and you can book your seat straight after.", label: "Get the free trial + bootcamp seat" },
+      { t: "offer", title: "Grab a seat in the next one", x: "Joining is free, and it comes with a **30-day free trial** of HighLevel. Sign up through the bootcamp page and you can book your seat straight after.", label: "Get the free trial + bootcamp seat" },
       { t: "h2", id: "bonuses", x: "The bonuses that come with it" },
       { t: "ul", items: [
         "A **lead gen playbook**.",
@@ -82,7 +82,7 @@ export const trainingPosts: Post[] = [
         ["Friday", "AI and scale", "AI help to handle more without more hours"],
       ], caption: "From the official challenge page, checked 18 November 2026." },
       { t: "p", x: "Notice the order. It's the same flywheel the whole platform is built around: **capture, nurture, close**. By Thursday night you have the loop; Friday is about making it run without you." },
-      { t: "offer", title: "Start on the next Monday", x: "The challenge is **free**. You join with a **14-day free trial** of HighLevel, or with your existing account if you're already a customer.", label: "Join the 5 Day Challenge" },
+      { t: "offer", title: "Start on the next Monday", x: "The challenge is **free**. You join with a **free HighLevel trial** (the bootcamp's 30-day trial works), or with your existing account if you're already a customer.", label: "Join the 5 Day Challenge" },
       { t: "h2", id: "what-you-get", x: "What you get besides the lessons" },
       { t: "ul", items: [
         "A **kickoff call** to start the week together.",
@@ -92,12 +92,12 @@ export const trainingPosts: Post[] = [
         "And the best part: **you keep the system you build.**",
       ] },
       { t: "h2", id: "catch", x: "What's the catch?" },
-      { t: "p", x: "The only “catch” is that you need a HighLevel account: either the free 14-day trial or an existing subscription. That's it." },
+      { t: "p", x: "The only “catch” is that you need a HighLevel account: either a free trial (such as the bootcamp's 30-day trial) or an existing subscription. That's it." },
       { t: "tip", title: "How to actually finish", x: "Block the same 45 minutes every day of the week before it starts. Challenges are won in the calendar, not in the lessons." },
       { t: "p", x: "Want a live, guided hour before you start? The [free HighLevel bootcamp](/blog/free-highlevel-bootcamp) covers six quick wins and includes challenge access as a bonus." },
     ],
     faq: [
-      ["Is the HighLevel 5 Day Challenge free?", "Yes. You need a HighLevel account to take part, either the free 14-day trial or an existing subscription."],
+      ["Is the HighLevel 5 Day Challenge free?", "Yes. You need a HighLevel account to take part, either a free trial (the bootcamp's 30-day trial works) or an existing subscription."],
       ["How long does it take?", "Five days, Monday to Friday, with one focus each day."],
       ["Can existing HighLevel customers join?", "Yes. Existing customers can take part with their current account."],
       ["What do I keep at the end?", "The system you build: funnel, form, pipeline, follow-ups and booking, plus templates and snapshots."],

@@ -11,10 +11,10 @@ export const extras: Record<string, PostExtras> = {
     excerpt: "What is GoHighLevel? One login that replaces eleven browser tabs. Here's what it does, what it costs and who should skip it.",
     takeaways: [
       "GoHighLevel bundles CRM, funnels, email and SMS, calendars, payments, reviews and automation in one platform.",
-      "Plans start at $97 a month, and there's a 14-day free trial with no obligation.",
+      "Plans start at $97 a month, and you can try it free for 30 days through the live bootcamp.",
       "It's built for freelancers, agencies and local service businesses that run on leads and appointments.",
     ],
-    glance: [["Price from", "$97 / month"], ["Free trial", "14 days"], ["Best for", "Agencies & local businesses"], ["Learning curve", "Moderate"]],
+    glance: [["Price from", "$97 / month"], ["Free trial", "30 days via the bootcamp"], ["Best for", "Agencies & local businesses"], ["Learning curve", "Moderate"]],
     insertBefore: "pricing",
     blocks: [
       { t: "h2", id: "gohighlevel-vs-separate-tools", x: "GoHighLevel vs a stack of separate tools" },
@@ -83,7 +83,7 @@ export const extras: Record<string, PostExtras> = {
       "Annual billing brings Starter to $970 and Unlimited to $2,970 a year.",
       "SMS, email and calls are billed on top at small per-use rates.",
     ],
-    glance: [["From", "$97 / month"], ["Top tier", "Founder · $497 / month"], ["Free trial", "14 days"], ["Annual from", "$970 / year"]],
+    glance: [["From", "$97 / month"], ["Top tier", "Founder · $497 / month"], ["Free trial", "30 days via the bootcamp"], ["Annual from", "$970 / year"]],
     insertBefore: "which",
     blocks: [
       { t: "h2", id: "cost-per-client", x: "GoHighLevel pricing per client: the maths agencies care about" },
@@ -123,13 +123,13 @@ export const extras: Record<string, PostExtras> = {
 
   "highlevel-saas-pro-free-trial": {
     keyword: "HighLevel SaaS Pro free trial",
-    excerpt: "The HighLevel SaaS Pro free trial gives agencies 14 days to test selling software with their own name on it.",
+    excerpt: "The HighLevel SaaS Pro free trial gives agencies a risk-free window to test selling software with their own name on it.",
     takeaways: [
-      "14 days free. Your card is charged after day 14 unless you cancel.",
+      "Free to start. Your card is charged when the trial ends unless you cancel.",
       "Built for agencies that want recurring software revenue, not just hours.",
       "Get the most from it with one pilot client and one simple package.",
     ],
-    glance: [["Trial", "14 days"], ["Billing", "After day 14 unless cancelled"], ["For", "Agencies"], ["Existing users", "Use the Pro upgrade"]],
+    glance: [["Trial", "Free"], ["Billing", "When the trial ends, unless cancelled"], ["For", "Agencies"], ["Existing users", "Use the Pro upgrade"]],
     insertBefore: "existing",
     blocks: [
       { t: "h2", id: "pitch", x: "How to pitch your first client during your HighLevel SaaS Pro free trial" },
@@ -137,7 +137,7 @@ export const extras: Record<string, PostExtras> = {
         "**Lead with their problem**: “You're missing calls after hours, and each one is a lost booking.”",
         "**Show the fix live** on your own trial account: call, miss, get the text back.",
         "**Offer a small monthly package** that keeps it running, with you as support.",
-        "**Start this week**, so you have real results before day 14.",
+        "**Start this week**, so you have real results before the trial ends.",
       ] },
       { t: "quote", x: "Don't sell software. Sell the missed call that never happens again." },
     ],
@@ -148,7 +148,7 @@ export const extras: Record<string, PostExtras> = {
     excerpt: "The free HighLevel bootcamp: six quick wins, real people in breakout rooms, and a business that's live by the time the call ends.",
     takeaways: [
       "Live on Zoom every weekday at 11am CT, 60 minutes max.",
-      "It comes with a 30-day free trial, double the usual 14 days.",
+      "It comes with a 30-day free trial of HighLevel.",
       "You set up six quick wins, from missed-call text-back to review management.",
     ],
     glance: [["Cost", "Free"], ["When", "Weekdays · 11am CT"], ["Length", "60 minutes"], ["Trial", "30 days"]],
@@ -170,17 +170,17 @@ export const extras: Record<string, PostExtras> = {
     excerpt: "The HighLevel 5 Day Challenge: Monday you set up, and by Friday leads flow into a system that follows up and books itself.",
     takeaways: [
       "Free, Monday to Friday, one focus per day.",
-      "You need a 14-day free trial or an existing HighLevel account.",
+      "You need a free HighLevel trial (the bootcamp's 30-day trial works) or an existing account.",
       "You keep the funnel, pipeline, follow-ups and booking you build.",
     ],
-    glance: [["Cost", "Free"], ["Length", "5 days"], ["Needs", "14-day trial or account"], ["You keep", "Everything you build"]],
+    glance: [["Cost", "Free"], ["Length", "5 days"], ["Needs", "Free trial or account"], ["You keep", "Everything you build"]],
     insertBefore: "catch",
     blocks: [
       { t: "h2", id: "challenge-vs-bootcamp", x: "HighLevel 5 Day Challenge vs the free bootcamp" },
       { t: "table", head: ["", "Free bootcamp", "5 Day Challenge"], rows: [
         ["Length", "60 minutes", "5 days, Monday to Friday"],
         ["Format", "Live on Zoom, weekdays at 11am CT", "One focus a day, with a kickoff call"],
-        ["Trial", "30 days", "14 days, or your existing account"],
+        ["Trial", "30 days", "A free trial or your existing account"],
         ["Best for", "A fast first setup", "Building the full capture–nurture–close system"],
       ] },
       { t: "p", x: "You don't have to choose: the bootcamp includes access to the challenge as a bonus. Many people do the hour first, then the week." },
@@ -194,9 +194,9 @@ export const extras: Record<string, PostExtras> = {
     takeaways: [
       "HighLevel's AI answers calls and messages 24/7, books appointments and follows up.",
       "Specialised agents cover reception, scheduling, sales, marketing and reviews.",
-      "There's a 14-day free trial, and new users get a one-hour onboarding session.",
+      "There's a free trial, and new users get a one-hour onboarding session.",
     ],
-    glance: [["Availability", "24/7"], ["Free trial", "14 days"], ["Onboarding", "1-hour session"], ["Compliance", "GDPR · SOC 2 · HIPAA packages"]],
+    glance: [["Availability", "24/7"], ["Free trial", "Yes"], ["Onboarding", "1-hour session"], ["Compliance", "GDPR · SOC 2 · HIPAA packages"]],
     insertBefore: "trust",
     blocks: [
       { t: "h2", id: "setup", x: "Setting up the HighLevel AI receptionist: your first-hour checklist" },
@@ -217,7 +217,7 @@ export const extras: Record<string, PostExtras> = {
     takeaways: [
       "A free two-part workshop for new and existing HighLevel users.",
       "You build a real Voice AI workflow: answering, missed-call texts, routing and follow-up.",
-      "New users join with a 14-day free trial. Dates are on the registration page.",
+      "New users join with a free HighLevel trial. Dates are on the registration page.",
     ],
     glance: [["Cost", "Free"], ["Format", "Two parts, built live"], ["Ideal for", "Med spas, trades, dentists"], ["Needs", "HighLevel account or trial"]],
     insertBefore: "requirements",

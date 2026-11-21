@@ -12,6 +12,9 @@ import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { MetaPixel } from "../components/tracking/MetaPixel";
+import { ConsentBanner } from "../components/tracking/ConsentBanner";
+import { OptInProvider } from "../components/funnel/OptIn";
+import { FONT_CSS, HEAD_SCRIPT, NOSCRIPT_IFRAME_SRC } from "../lib/consent";
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -78,11 +81,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#0b1020" },
-      { title: "HighLevel Free Trial + Live Bootcamp" },
-      { name: "description", content: "Get a 30-day HighLevel free trial and join the free live bootcamp." },
-      { property: "og:title", content: "HighLevel Free Trial + Live Bootcamp" },
-      { property: "og:description", content: "Get a 30-day HighLevel free trial and join the free live bootcamp." },
+      { title: "NuvoraCore | Connect. Automate. Grow." },
+      { name: "description", content: "NuvoraCore helps local businesses automate leads, bookings and follow-up on HighLevel." },
+      { property: "og:title", content: "NuvoraCore | Connect. Automate. Grow." },
+      { property: "og:description", content: "NuvoraCore helps local businesses automate leads, bookings and follow-up on HighLevel." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "NuvoraCore" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -90,10 +94,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" },
+      // Fonts load without blocking first paint (see FONT_CSS in lib/consent.ts); preload starts the download early.
+      { rel: "preload", as: "style", href: FONT_CSS },
     ],
   }),
   shellComponent: RootShell,
@@ -106,9 +115,18 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        {/* Google Consent Mode v2 defaults + official GTM snippet (gtm.start), as high in <head> as possible. */}
+        <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
         <HeadContent />
+        <noscript>
+          <link rel="stylesheet" href={FONT_CSS} />
+        </noscript>
       </head>
       <body>
+        {/* GTM (noscript) — immediately after the opening <body> tag. */}
+        <noscript>
+          <iframe src={NOSCRIPT_IFRAME_SRC} height="0" width="0" style={{ display: "none", visibility: "hidden" }} title="Google Tag Manager" />
+        </noscript>
         {children}
         <Scripts />
       </body>
@@ -121,8 +139,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <OptInProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <ConsentBanner />
+      </OptInProvider>
       <MetaPixel />
     </QueryClientProvider>
   );

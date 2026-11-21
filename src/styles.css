@@ -92,7 +92,7 @@
   --secondary-foreground: oklch(0.97 0.01 250);
   --muted: oklch(0.22 0.025 260);
   --muted-foreground: oklch(0.72 0.03 255);
-  --accent: oklch(0.85 0.17 90);
+  --accent: oklch(0.79 0.16 62); /* NuvoraCore orange (from the logo), replaces HighLevel-style yellow */
   --accent-foreground: oklch(0.18 0.03 260);
   --success: oklch(0.75 0.17 150);
   /* Violet: the one supporting colour. Job: depth and highlight (headline accents, section numbers,
@@ -139,8 +139,11 @@
 @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @utility animate-fade-up { animation: fade-up 0.6s var(--ease-out-strong) both; }
-@keyframes pulse-ring { 0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--primary) 50%, transparent); } 50% { box-shadow: 0 0 0 12px transparent; } }
-@utility animate-pulse-ring { animation: pulse-ring 2.2s ease-in-out infinite; }
+/* Attention pulse: a ring drawn once and animated with transform + opacity only (GPU-composited),
+   instead of animating box-shadow, which forced a style recalc + repaint every frame. */
+@keyframes pulse-ring { 0% { transform: scale(1); opacity: 0.6; } 70%, 100% { transform: scale(1.18, 1.45); opacity: 0; } }
+@utility animate-pulse-ring { isolation: isolate; } /* parent must be positioned (relative/absolute) */
+.animate-pulse-ring::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 70%, transparent); pointer-events: none; animation: pulse-ring 2.4s var(--ease-out-strong) infinite; will-change: transform, opacity; }
 
 /* Phone sticky CTA: transition (interruptible), not keyframes. Exit faster than enter. */
 .sticky-cta { transform: translateY(100%); transition: transform 180ms var(--ease-out-strong); }
@@ -154,7 +157,7 @@ html { color-scheme: dark; touch-action: manipulation; -webkit-tap-highlight-col
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-up { animation: fade-in 0.3s ease both; }
-  .animate-pulse-ring { animation: none; }
+  .animate-pulse-ring::before { animation: none; opacity: 0; }
   .sticky-cta, .sticky-cta.is-visible { transform: none; opacity: 0; transition: opacity 200ms ease; }
   .sticky-cta.is-visible { opacity: 1; }
 }
@@ -202,12 +205,16 @@ html { color-scheme: dark; touch-action: manipulation; -webkit-tap-highlight-col
 @keyframes draw-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 
 /* Hero entrance: children rise in sequence on load (once). */
-.hero-stagger > * { animation: fade-up 0.7s var(--ease-out-strong) both; }
+/* Rise only (no opacity fade): hero text must paint immediately because it is the LCP element on phones. */
+@keyframes rise-in { from { transform: translateY(14px); } to { transform: none; } }
+.hero-stagger > * { animation: rise-in 0.7s var(--ease-out-strong) both; }
 .hero-stagger > *:nth-child(1) { animation-delay: 0ms; }
 .hero-stagger > *:nth-child(2) { animation-delay: 70ms; }
 .hero-stagger > *:nth-child(3) { animation-delay: 140ms; }
 .hero-stagger > *:nth-child(4) { animation-delay: 210ms; }
 .hero-stagger > *:nth-child(5) { animation-delay: 280ms; }
+/* The H1 is the LCP element: paint it immediately (no fade) so LCP isn't delayed by the entrance animation. */
+.hero-stagger > h1 { animation: none; }
 
 /* Primary CTA: a light sweep on hover (desktop only), so the main action feels alive without looping. */
 @media (hover: hover) and (pointer: fine) {
@@ -235,6 +242,9 @@ html { color-scheme: dark; touch-action: manipulation; -webkit-tap-highlight-col
 .floating-nav.is-visible { opacity: 1; transform: none; transition-duration: 280ms; }
 @media (prefers-reduced-motion: reduce) { .floating-nav, .floating-nav.is-visible { transform: none; } }
 
+/* Long pages: skip rendering off-screen sections until the visitor scrolls near them. No visual change. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
 @media print { [data-reveal] { animation: none !important; opacity: 1 !important; transform: none !important; } }
 
 /* Page-to-page cross-fade (View Transitions API). Exit faster than enter. */
@@ -258,7 +268,9 @@ html { color-scheme: dark; touch-action: manipulation; -webkit-tap-highlight-col
 
 /* Slow ambient glow behind blog hero (decorative; stops for reduced motion) */
 @keyframes drift { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(4%, -6%, 0) scale(1.08); } }
-.orb { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: 0.5; pointer-events: none; animation: drift 18s ease-in-out infinite; }
+/* Soft glow via a radial mask (rasterised once) instead of a 70px blur filter, which was expensive to repaint on phones. */
+.orb { position: absolute; border-radius: 9999px; opacity: 0.55; pointer-events: none; -webkit-mask-image: radial-gradient(closest-side, #000 0%, transparent 100%); mask-image: radial-gradient(closest-side, #000 0%, transparent 100%); }
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) { .orb { will-change: transform; animation: drift 18s ease-in-out infinite; } }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
@@ -267,4 +279,3 @@ html { color-scheme: dark; touch-action: manipulation; -webkit-tap-highlight-col
 }
 
 h1,h2,h3 { font-family: var(--font-display); text-wrap: balance; }
-p { text-wrap: pretty; }

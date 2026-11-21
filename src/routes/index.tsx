@@ -1,19 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { delay } from "@/components/motion/Reveal";
-import { ArrowRight, Check, X, Zap, Users, Rocket, Star, Gift, Clock, ShieldCheck, CalendarDays, Video, Timer, BadgeCheck } from "lucide-react";
-import logoUrl from "@/assets/highlevel-logo.png";
+import { ArrowRight, Check, X, Zap, Users, Rocket, Gift, Clock, ShieldCheck, CalendarDays, Video, Timer, BadgeCheck } from "lucide-react";
+import { BrandLogo } from "@/components/site/BrandLogo";
 import { CTA } from "@/components/landing/CTA";
 import { Countdown } from "@/components/landing/Countdown";
 import { StickyCTA } from "@/components/landing/StickyCTA";
-import { LeadGateProvider, useGateClick } from "@/components/landing/LeadGate";
+import { OptInButton } from "@/components/funnel/OptIn";
 import { VideoEmbed } from "@/components/landing/VideoEmbed";
 import { GuideCards } from "@/components/landing/GuideCards";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { AFFILIATE_URL } from "@/lib/bootcamp";
 
-const TITLE = "HighLevel Free Trial (30 Days) + Free Live Bootcamp";
-const DESC = "For local businesses, coaches and service providers: automate your leads, booking and follow-up on HighLevel in one free 60-minute live bootcamp, with a 30-day free trial.";
+const TITLE = "NuvoraCore | HighLevel Setup & Automation for Local Business";
+const DESC = "NuvoraCore helps local businesses, coaches and service providers automate leads, bookings and follow-up on HighLevel, starting with a free live setup bootcamp.";
 
 const faqs: [string, string][] = [
   ["I'm not technical. Can I really do this?", "Yes. The bootcamp is click-by-click with a live HighLevel coach and breakout rooms, so you never get stuck on the tech."],
@@ -50,12 +49,12 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const Disclaimer = () => (
-  <>I'm an independent HighLevel affiliate, <strong>not a HighLevel employee or staff member</strong>. I may earn a commission if you sign up, at no extra cost to you.</>
-);
+/** Affiliate disclosure: plainly visible, normal size, shown near the hero and in the footer. */
+const DISCLOSURE =
+  "Disclosure: I'm an independent HighLevel affiliate, not a HighLevel employee or agent. I receive referral payments from HighLevel and may earn a commission if you sign up, at no extra cost to you. Opinions here are my own and are not statements by HighLevel Inc. HighLevel and its logo are trademarks of HighLevel, Inc. This site is not owned or operated by HighLevel.";
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
-  return <section id={id} className={`mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20 lg:py-28 ${className}`}>{children}</section>;
+  return <section id={id} className={`cv-auto mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20 lg:py-28 ${className}`}>{children}</section>;
 }
 
 /* Fluid type: sized for the device, not just shrunk. */
@@ -101,11 +100,10 @@ function NextBootcampCard() {
 }
 
 function Index() {
-  return <LeadGateProvider><LandingPage /></LeadGateProvider>;
+  return <LandingPage />;
 }
 
 function LandingPage() {
-  const headerGate = useGateClick("header");
   return (
     <div className="min-h-screen overflow-x-hidden bg-background font-sans text-foreground">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-background focus:px-4 focus:py-2">Skip to content</a>
@@ -120,9 +118,7 @@ function LandingPage() {
       {/* Header: logo-only on phones (sticky bar carries the CTA), button on tablet, nav on desktop */}
       <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-8 sm:py-3">
-          <Link to="/" aria-label="Home" className="shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-            <img src={logoUrl} alt="HighLevel" width={274} height={64} fetchPriority="high" className="h-8 w-auto sm:h-9" />
-          </Link>
+          <BrandLogo />
           <nav aria-label="Page sections" className="hidden items-center gap-1 lg:flex">
             {nav.map(([href, label]) =>
               href.startsWith("/") ? (
@@ -134,10 +130,10 @@ function LandingPage() {
           </nav>
           <div className="flex items-center gap-1 sm:gap-2">
             <Link to="/blog" className={`${NAV_LINK} lg:hidden`}>Guides</Link>
-            <a href={AFFILIATE_URL} target="_blank" rel="noopener sponsored" data-offer="bootcamp" data-placement="header" onClick={headerGate} className="shine group inline-flex min-h-10 shrink-0 items-center whitespace-nowrap gap-1.5 rounded-full bg-gradient-primary px-4 text-sm font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-11 sm:px-5">
+            <OptInButton placement="header" className="shine group inline-flex min-h-10 shrink-0 items-center whitespace-nowrap gap-1.5 rounded-full bg-gradient-primary px-4 text-sm font-bold text-primary-foreground shadow-glow transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-11 sm:px-5">
               <span className="sm:hidden">Free trial</span><span className="hidden sm:inline">Start Free Trial</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </a>
+            </OptInButton>
           </div>
         </div>
       </header>
@@ -151,10 +147,13 @@ function LandingPage() {
                 <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-sm text-muted-foreground">
                   <span className="h-2 w-2 rounded-full bg-success" aria-hidden /> Live every weekday · 100% free to join
                 </span>
-                <h1 className="mt-5 text-[clamp(2.25rem,5.2vw+0.6rem,4rem)] font-bold leading-[1.05] tracking-tight sm:mx-auto sm:max-w-3xl lg:mx-0 lg:text-[clamp(2.75rem,3.9vw,4rem)]">
-                  Automate your leads and bookings on HighLevel <span className="text-gradient">in under 60 minutes</span>, live and free
+                <h1 className="mt-5 text-[clamp(2.1rem,4.8vw+0.6rem,3.75rem)] font-bold leading-[1.06] tracking-tight sm:mx-auto sm:max-w-3xl lg:mx-0 lg:text-[clamp(2.6rem,3.6vw,3.75rem)]">
+                  Free 30-Day HighLevel Trial <span className="text-gradient">+ 3 Free Bonuses</span> + Live Setup Bootcamp
                 </h1>
-                <p className="mt-5 text-lg text-muted-foreground sm:mx-auto sm:max-w-2xl sm:text-xl lg:mx-0 lg:max-w-xl">
+                <p className="mt-5 font-display text-xl font-semibold text-foreground sm:mx-auto sm:max-w-2xl sm:text-2xl lg:mx-0 lg:max-w-xl">
+                  Automate your leads and bookings on HighLevel in under 60 minutes, live and free.
+                </p>
+                <p className="mt-4 text-lg text-muted-foreground sm:mx-auto sm:max-w-2xl lg:mx-0 lg:max-w-xl">
                   For local businesses, coaches and service providers. Replace the separate tools you're paying for, and leave with lead follow-up, booking and reviews running on their own. Includes a <strong className="text-foreground">30-day free trial</strong> and a live, click-by-click bootcamp.
                 </p>
                 <CTA
@@ -163,7 +162,7 @@ function LandingPage() {
                   pulse
                   label={<><span className="sm:hidden">Claim Free Trial + Bootcamp Seat</span><span className="hidden sm:inline">Claim My Free Trial + Bootcamp Seat</span></>}
                   className="mt-8 items-stretch sm:items-center lg:items-start" buttonClassName="w-full sm:w-auto" />
-                <p className="mt-6 max-w-xl text-xs leading-relaxed text-muted-foreground sm:mx-auto lg:mx-0"><Disclaimer /></p>
+                <p className="mt-6 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground sm:mx-auto lg:mx-0">{DISCLOSURE}</p>
               </div>
               <div className="animate-fade-up [animation-delay:340ms] sm:mx-auto sm:w-full sm:max-w-3xl lg:max-w-none">
                 <NextBootcampCard />
@@ -186,7 +185,7 @@ function LandingPage() {
         </div>
 
         {/* Video: proof right after the hero, for visitors who want to see it before they click */}
-        <section id="watch" className="relative mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
+        <section id="watch" className="cv-auto relative mx-auto max-w-7xl scroll-mt-24 px-5 pt-16 sm:px-8 sm:pt-20 lg:pt-28">
           <div className="mx-auto max-w-3xl text-center">
             <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">Watch before you join</p>
             <h2 data-reveal className={`${H2} mt-3`}>See exactly how the <span className="text-gradient">live bootcamp</span> works</h2>
@@ -301,8 +300,7 @@ function LandingPage() {
         {/* Reviews — phone & tablet: swipeable rail with peek · desktop: 3 across */}
         <div className="bg-card/40">
           <Section id="reviews">
-            <div className="flex justify-center gap-1 text-accent" aria-hidden>{[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 fill-current" />)}</div>
-            <h2 data-reveal className={`${H2} mt-4 text-center`}>4.9/5 from 2,000+ reviews</h2>
+            <h2 data-reveal className={`${H2} text-center`}>What bootcamp attendees say</h2>
             <div
               tabIndex={0}
               role="region"
@@ -342,7 +340,7 @@ function LandingPage() {
         </Section>
 
         {/* Guides: four large animated cards, for visitors who want to read before deciding (and internal links for SEO) */}
-        <section id="guides" className="relative mx-auto max-w-[88rem] scroll-mt-24 px-5 pb-16 sm:px-8 sm:pb-20 lg:pb-28">
+        <section id="guides" className="cv-auto relative mx-auto max-w-[88rem] scroll-mt-24 px-5 pb-16 sm:px-8 sm:pb-20 lg:pb-28">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
               <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">Free guides</p>

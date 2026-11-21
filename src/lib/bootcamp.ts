@@ -4,11 +4,11 @@
  * (gohighlevel.com/ai-chat-widget-workshop) returned 404 that day, so it is left out until it is live again.
  */
 export const OFFERS = {
-  platform: { url: "https://www.gohighlevel.com/?fp_ref=tayo17", name: "HighLevel 14-day free trial" },
+  platform: { url: "https://www.gohighlevel.com/?fp_ref=tayo17", name: "HighLevel free trial" },
   starterAnnual: { url: "https://www.gohighlevel.com/970?fp_ref=tayo17", name: "HighLevel Starter annual plan ($970/year)" },
   annualPlans: { url: "https://gohighlevel.com/annual?fp_ref=tayo17", name: "HighLevel Starter or Unlimited annual plans" },
   proUpgrade: { url: "https://gohighlevel.com/saasupgrade?fp_ref=tayo17", name: "Upgrade an existing account to HighLevel Pro" },
-  saasProTrial: { url: "https://www.gohighlevel.com/protrial?fp_ref=tayo17", name: "HighLevel SaaS Pro 14-day trial" },
+  saasProTrial: { url: "https://www.gohighlevel.com/protrial?fp_ref=tayo17", name: "HighLevel SaaS Pro free trial" },
   bootcamp: { url: "https://www.gohighlevel.com/highlevel-bootcamp?fp_ref=tayo17", name: "Free live HighLevel bootcamp + 30-day trial" },
   challenge: { url: "http://gohighlevel.com/5dc?fp_ref=tayo17", name: "HighLevel 5 Day Challenge" },
   ai: { url: "https://www.gohighlevel.com/ai?fp_ref=tayo17", name: "HighLevel AI Employee" },
