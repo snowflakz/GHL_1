@@ -201,15 +201,18 @@ function LandingPage() {
 
         {/* Proof */}
         <div className="border-y border-border bg-card/50">
+          <p className="mx-auto max-w-3xl px-5 pt-8 text-center text-base font-medium text-foreground/90 sm:px-8 sm:pt-10 sm:text-lg">
+            The platform agencies, SaaS founders, startups and local businesses run on, for a fraction of what a stack of separate tools costs.
+          </p>
           <dl className="mx-auto grid max-w-6xl grid-cols-2 px-5 sm:px-8 lg:grid-cols-4">
-            {[["60 min", "Live setup, start to finish"], ["7.3B", "Leads generated on HighLevel"], ["179M", "Appointments booked"], ["7M+", "AI voice calls handled"]].map(([n, l], i) => (
+            {[["7M+", "AI voice calls"], ["7.3B", "Leads generated"], ["179M", "Appointments booked"], ["$5.2B+", "Sales facilitated in 2025"]].map(([n, l], i) => (
               <div key={l} className={`flex flex-col-reverse py-7 text-center sm:py-10 ${i % 2 === 0 ? "border-r border-border" : ""} ${i < 2 ? "border-b border-border lg:border-b-0" : ""} ${i === 1 ? "lg:border-r" : ""}`}>
                 <dt className="mt-1 px-2 text-sm text-muted-foreground">{l}</dt>
                 <dd className="font-display text-3xl font-bold tabular-nums text-gradient sm:text-4xl">{n}</dd>
               </div>
             ))}
           </dl>
-          <p className="mx-auto max-w-6xl border-t border-border px-5 py-3 text-center text-xs text-muted-foreground sm:px-8">Platform-wide figures as published by HighLevel on gohighlevel.com (November 2026). They describe HighLevel as a whole, not any individual's results.</p>
+          <p className="mx-auto max-w-6xl border-t border-border px-5 py-3 text-center text-xs text-muted-foreground sm:px-8">Platform-wide figures across all HighLevel accounts, as published by HighLevel on gohighlevel.com (November 2026). They are not a promise of any individual's results or earnings.</p>
         </div>
 
         {/* Video: proof right after the hero, for visitors who want to see it before they click */}
@@ -238,7 +241,7 @@ function LandingPage() {
           <div className="mx-auto max-w-3xl text-center">
             <p data-reveal className="text-sm font-semibold uppercase tracking-widest text-violet">What it replaces</p>
             <h2 data-reveal className={`${H2} mt-3`}>One platform instead of <span className="text-gradient">10+ separate tools</span></h2>
-            <p data-reveal className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">These are the typical tools a small business pays for separately. HighLevel includes all of them in one account.</p>
+            <p data-reveal className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">These are the typical tools an agency, SaaS founder, startup or local business pays for separately. HighLevel includes all of them in one account, often for a fraction of the combined cost.</p>
           </div>
           <ul className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
             {REPLACES.map(([I, job, typical], i) => (
