@@ -94,7 +94,7 @@ export const planPosts: Post[] = [
         "**24/7 support** plus HighLevel's community and resources.",
         "**All the core tools**: CRM, funnels and websites, email and SMS, social planner, calendars, reviews and automation.",
       ] },
-      { t: "tip", title: "Spend your 3 sub-accounts wisely", x: "A popular setup: one for your own business, two for your first paying clients. That way your software can pay for itself before the year is out." },
+      { t: "tip", title: "Spend your 3 sub-accounts wisely", x: "A popular setup: one for your own business, two for your first paying clients. That way you learn the platform on real client work from the start." },
       { t: "h2", id: "who-its-for", x: "Who the annual Starter plan is perfect for" },
       { t: "p", x: "Solo marketers, freelancers and small business owners who **already know they want HighLevel** and will stay at three businesses or fewer for the next year. If that's you, the [$970 Starter annual offer](@offer) is the simplest way to lock in the lower price." },
       { t: "offer", title: "Already sure? Lock in the yearly price", x: "The Starter annual plan is **$970 a year** with no contracts, and HighLevel says you can cancel at any time through its support team.", label: "See the $970 Starter offer" },
@@ -147,7 +147,7 @@ export const planPosts: Post[] = [
       { t: "tip", title: "Quick gut check", x: "Count the businesses you'll realistically manage by next November. 1–3: Starter. 4 or more, or you're building an agency: Unlimited. Not sure at all: use the free 30-day trial before deciding." },
       { t: "h2", id: "unlimited-extras", x: "What Unlimited adds besides more sub-accounts" },
       { t: "ul", items: [
-        "**Rebilling phone and email at cost.** Your clients' messaging usage can be billed back to them with no markup, so their texts don't eat your margin.",
+        "**Rebilling phone and email at cost.** Your clients' messaging usage can be billed back to them with no markup, so their texting costs stay on their bill.",
         "**User and agent reporting**, so you can see who on the team is doing what.",
         "**Basic API access** for connecting HighLevel to other tools you use.",
       ] },
@@ -190,7 +190,7 @@ export const planPosts: Post[] = [
       ], caption: "Prices shown on HighLevel's plans page on 18 November 2026. You can try HighLevel free for 30 days through the live bootcamp." },
       { t: "p", x: "Every plan includes the same core engine: CRM, funnels and websites, email and SMS, calendars, payments, reviews and automations. You're mostly paying for **how many businesses you can run** and **how much you can resell**." },
       { t: "h2", id: "founder", x: "What's special about Founder?" },
-      { t: "p", x: "Founder is HighLevel's top tier and the one it labels most popular. Two things stand out. **Rebilling with markup** means you can charge clients for their messaging usage and keep a margin, turning a cost into a profit line. And **Founders Club plus the Partner Network** puts you in rooms with other agency owners, which, for a lot of people, is worth more than any feature." },
+      { t: "p", x: "Founder is HighLevel's top tier and the one it labels most popular. Two things stand out. **Rebilling with markup** means you can set your own price when you bill clients for their messaging usage. And **Founders Club plus the Partner Network** puts you in rooms with other agency owners, which, for a lot of people, is worth more than any feature." },
       { t: "offer", title: "Not sure which tier? Try before you pick", x: "Through the free live bootcamp you get a **30-day free trial**: cancel anytime. Most people know which tier they need by the end of week one.", label: "Start your free trial" },
       { t: "h2", id: "annual", x: "Monthly vs annual billing" },
       { t: "p", x: "Pay yearly and Starter drops to **$970** (saving $194) while Unlimited drops to **$2,970** (saving $594). The trade-off is commitment, so it's best once you've tested the platform. The details are in the [Starter annual review](/blog/highlevel-starter-annual-plan-970) and the [Starter vs Unlimited annual comparison](/blog/highlevel-annual-plans-starter-vs-unlimited)." },
@@ -205,7 +205,7 @@ export const planPosts: Post[] = [
       { t: "ul", items: [
         "**One business, maybe two:** Starter.",
         "**An agency with four or more clients:** Unlimited.",
-        "**An agency that wants to resell usage at a profit and grow with a community:** Founder.",
+        "**An agency that wants to set its own usage pricing and join a community of agency owners:** Founder.",
       ] },
     ],
     faq: [

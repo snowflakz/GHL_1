@@ -26,7 +26,7 @@ export const agencyPosts: Post[] = [
         "You're charged a **prorated amount** that day, so you don't pay twice for the same days.",
         "Processing takes **1–3 business days**.",
       ] },
-      { t: "tip", title: "Time it well", x: "Because the billing date resets, many agencies upgrade near the start of a client billing cycle. That way the higher plan cost and the new SaaS revenue line up in the same month." },
+      { t: "tip", title: "Time it well", x: "Because the billing date resets, many agencies upgrade near the start of a client billing cycle. That way the plan change and your client billing start in the same month." },
       { t: "h2", id: "checklist", x: "What to have ready before you open the form" },
       { t: "ol", items: [
         "**Your HL agency login email**, the one you use to sign in to the agency account.",
@@ -37,7 +37,7 @@ export const agencyPosts: Post[] = [
       { t: "h2", id: "after", x: "What to do in the first week on Pro" },
       { t: "ul", items: [
         "Decide your **first SaaS offer**: one simple package beats five complicated ones.",
-        "Set your **pricing** so it covers usage costs and leaves margin.",
+        "Set your **pricing** so it covers usage costs and your support time.",
         "Pick **one pilot client** who already loves you and launch with them first.",
       ] },
       { t: "p", x: "New to HighLevel and not on an agency account yet? This form isn't for you. Start with the [SaaS Pro free trial](/blog/highlevel-saas-pro-free-trial) instead." },
@@ -87,9 +87,9 @@ export const agencyPosts: Post[] = [
       { t: "ul", items: [
         "**One clear outcome**, like “never miss a lead again” (missed-call text-back, booking and follow-up).",
         "**Something you can set up in an afternoon** and copy for the next client.",
-        "**A price that covers usage**, since SMS, email and calls cost money, plus your margin.",
+        "**A price that covers usage**, since SMS, email and calls have usage costs, plus your support time.",
       ] },
-      { t: "p", x: "HighLevel's free bootcamp includes a **SaaSpreneur playbook** as a bonus, a useful companion if this business model is new to you. See [what's in the bootcamp](/blog/free-highlevel-bootcamp)." },
+      { t: "p", x: "HighLevel's free bootcamp includes **The SaaSpreneur Playbook** as a bonus included by HighLevel, a useful companion if this business model is new to you. See [what's in the bootcamp](/blog/free-highlevel-bootcamp)." },
       { t: "h2", id: "existing", x: "Already a HighLevel customer?" },
       { t: "p", x: "Then you don't need a new trial. Use the [Pro upgrade route](/blog/upgrade-highlevel-to-pro) to move your existing account instead." },
     ],

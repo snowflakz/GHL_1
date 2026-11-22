@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { OptInButton } from "@/components/funnel/OptIn";
+import { OptInButton, TRIAL_FINE_PRINT } from "@/components/funnel/OptIn";
 import { cn } from "@/lib/utils";
 
 type CTAProps = {
@@ -7,6 +7,8 @@ type CTAProps = {
   className?: string;
   buttonClassName?: string;
   sub?: boolean;
+  /** Extra classes for the fine print (e.g. alignment). */
+  subClassName?: string;
   /** Attention pulse. Use on one button per page only (the hero). */
   pulse?: boolean;
   id?: string;
@@ -15,7 +17,7 @@ type CTAProps = {
 };
 
 /** Primary CTA: opens the opt-in form (never links straight to the affiliate URL). */
-export function CTA({ label = "Claim My Free Trial + Bootcamp Seat", className, buttonClassName, sub = true, pulse = false, id, placement = "section" }: CTAProps) {
+export function CTA({ label = "Claim My Free Trial + Bootcamp Seat", className, buttonClassName, sub = true, subClassName, pulse = false, id, placement = "section" }: CTAProps) {
   return (
     <div id={id} data-cta className={cn("flex flex-col items-center gap-2", className)}>
       <OptInButton
@@ -31,7 +33,7 @@ export function CTA({ label = "Claim My Free Trial + Bootcamp Seat", className, 
         {label}
         <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
       </OptInButton>
-      {sub && <p className="text-sm text-muted-foreground">100% free for 30 days · Cancel anytime</p>}
+      {sub && <p className={cn("max-w-md text-center text-xs leading-relaxed text-muted-foreground", subClassName)}>{TRIAL_FINE_PRINT}</p>}
     </div>
   );
 }

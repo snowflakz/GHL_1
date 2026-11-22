@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-11-21 00:00:00",
+  "exportTime": "2026-11-22 00:00:00",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -76,7 +76,7 @@
         "accountId": "0",
         "containerId": "0",
         "tagId": "4",
-        "name": "Google Ads Conversion - Trial click",
+        "name": "Google Ads Conversion - Affiliate click",
         "type": "awct",
         "parameter": [
           { "type": "BOOLEAN", "key": "enableNewCustomerReporting", "value": "false" },
@@ -99,14 +99,14 @@
         "accountId": "0",
         "containerId": "0",
         "triggerId": "101",
-        "name": "CE - optin_submit",
+        "name": "CE - generate_lead",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
             "type": "EQUALS",
             "parameter": [
               { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
-              { "type": "TEMPLATE", "key": "arg1", "value": "optin_submit" }
+              { "type": "TEMPLATE", "key": "arg1", "value": "generate_lead" }
             ]
           }
         ],
@@ -116,14 +116,14 @@
         "accountId": "0",
         "containerId": "0",
         "triggerId": "102",
-        "name": "CE - trial_click",
+        "name": "CE - affiliate_click",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
           {
             "type": "EQUALS",
             "parameter": [
               { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
-              { "type": "TEMPLATE", "key": "arg1", "value": "trial_click" }
+              { "type": "TEMPLATE", "key": "arg1", "value": "affiliate_click" }
             ]
           }
         ],

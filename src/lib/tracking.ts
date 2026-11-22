@@ -4,7 +4,7 @@
  *
  * Events:
  *   PageView          every page view, including client-side navigations
- *   Lead              opt-in form submitted (the email is used for advanced matching)
+ *   Lead              opt-in form submitted (no email or other personal data is sent to Meta)
  *   InitiateCheckout  thank-you step's "start my free 30-day trial" button clicked
  *   ViewContent       bootcamp video played
  * Google Ads conversions go through GTM via the dataLayer (see lib/funnel.ts), not through this file.
@@ -45,10 +45,4 @@ export function initPixel() {
 export function track(event: "PageView" | "Lead" | "InitiateCheckout" | "ViewContent", params: Record<string, unknown> = {}) {
   if (!pixelEnabled() || !window.fbq) return;
   window.fbq("track", event, params, { eventID: newEventId() });
-}
-
-/** Manual advanced matching: the Pixel hashes the email in the browser before sending it to Meta. */
-export function identify(email: string, firstName?: string) {
-  if (!pixelEnabled() || !window.fbq) return;
-  window.fbq("init", META_PIXEL_ID, { em: email.trim().toLowerCase(), ...(firstName ? { fn: firstName.trim().toLowerCase() } : {}) });
 }

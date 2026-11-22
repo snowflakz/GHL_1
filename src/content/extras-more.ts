@@ -5,7 +5,7 @@ type More = Pick<PostExtras, "seoTitle" | "description" | "more">;
 /** Meta fixes so every guide carries its keyword, plus one extra in-depth section each. */
 export const moreExtras: Record<string, More> = {
   "free-highlevel-bootcamp": {
-    description: "The free HighLevel bootcamp runs live every weekday at 11am CT. What you'll set up, the bonuses, what to bring and how the 30-day free trial works.",
+    description: "The free HighLevel bootcamp runs live every weekday at 11am CT. What you'll set up, the bonuses included by HighLevel, what to bring and how the 30-day free trial works.",
     more: [{ insertBefore: "bonuses", blocks: [
       { t: "h2", id: "bootcamp-checklist", x: "Your free HighLevel bootcamp checklist" },
       { t: "p", x: "A live hour goes fast. Here's how to walk out with the most done:" },
@@ -57,7 +57,7 @@ export const moreExtras: Record<string, More> = {
         ["Follow-up", "Automated texts and workflows", "Usually manual, by you"],
         ["Knows your business", "From the rules and answers you give it", "From a script you provide"],
       ], caption: "General comparison. Answering services vary, so check what yours includes." },
-      { t: "p", x: "The difference that matters most is the last mile: a message is a to-do for you, a booking is revenue on your calendar." },
+      { t: "p", x: "The difference that matters most is the last mile: a message is a to-do for you, a booking is an appointment already on your calendar." },
     ] }],
   },
 
@@ -114,7 +114,7 @@ export const moreExtras: Record<string, More> = {
         "**Week 3:** add your first client in sub-account two, using the same setup as a template.",
         "**Week 4:** review what's working and decide who goes in sub-account three.",
       ] },
-      { t: "p", x: "Annual plans reward momentum. A strong first month is how the $970 turns into an investment rather than an expense." },
+      { t: "p", x: "Annual plans reward momentum. If you choose annual, plan your setup first so you use the full year of the platform from month one." },
     ] }],
   },
 
@@ -124,7 +124,7 @@ export const moreExtras: Record<string, More> = {
       { t: "h2", id: "pricing-your-saas", x: "Pricing your first SaaS package during the HighLevel SaaS Pro free trial" },
       { t: "ul", items: [
         "**Cover usage first.** Texts, emails and calls cost money, so build them into the price or rebill them.",
-        "**Add margin for support.** Clients pay for the software and for knowing you'll help.",
+        "**Price in your support time.** Clients pay for the software and for knowing you'll help.",
         "**Keep it to one tier at launch.** You can add “Plus” once you know what people ask for.",
       ] },
       { t: "quote", x: "Simple pricing sells. Clever pricing gets explained." },
